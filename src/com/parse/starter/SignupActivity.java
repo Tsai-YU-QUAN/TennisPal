@@ -23,7 +23,7 @@ import com.parse.SignUpCallback;
 
 
 
-public class ParseStarterProjectActivity extends Activity {
+public class SignupActivity extends Activity {
 	/** Called when the activity is first created. */
 	
 	  private EditText usernameField;
