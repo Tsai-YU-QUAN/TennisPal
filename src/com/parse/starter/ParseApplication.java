@@ -4,14 +4,8 @@ import android.app.Application;
 
 import com.parse.Parse;
 import com.parse.ParseACL;
-import com.parse.ParseAnalytics;
 import com.parse.ParseCrashReporting;
-import com.parse.ParseException;
-import com.parse.ParseInstallation;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.PushService;
-import com.parse.SignUpCallback;
 
 public class ParseApplication extends Application {
 
