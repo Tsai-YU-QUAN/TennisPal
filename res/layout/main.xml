@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/ParseLoginUI.EditText"
-        android:hint="Username"></EditText>
+        android:hint="真實名稱"></EditText>
 
     <EditText
         android:id="@+id/signup_password_input"
@@ -18,7 +18,7 @@
         style="@style/ParseLoginUI.EditText"
         android:layout_marginTop="@dimen/com_parse_ui_small_vertical_spacing"
         android:fontFamily="sans-serif"
-        android:hint="Password"
+        android:hint="密碼"
         android:inputType="textPassword"
         android:selectAllOnFocus="true" />
 
@@ -29,7 +29,7 @@
         style="@style/ParseLoginUI.EditText"
         android:layout_marginTop="@dimen/com_parse_ui_small_vertical_spacing"
         android:fontFamily="sans-serif"
-        android:hint="Re-enter password"
+        android:hint="重新再輸入密碼"
         android:inputType="textPassword"
         android:selectAllOnFocus="true" />
 
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         style="@style/ParseLoginUI.EditText"
         android:layout_marginTop="@dimen/com_parse_ui_small_vertical_spacing"
-        android:hint="Email"
+        android:hint="信箱"
         android:inputType="textEmailAddress" />
 
    <!--  <EditText

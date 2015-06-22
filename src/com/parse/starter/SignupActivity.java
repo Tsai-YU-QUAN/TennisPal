@@ -152,6 +152,9 @@ public class SignupActivity extends Activity {
 
 		          if (e == null) {
 		        	  System.out.println("google");
+		        	  Intent intent = new Intent();
+		        	  intent.setClass(SignupActivity.this, FirstpersonalEditActivity.class);
+		        	  startActivity(intent);
 		           // loadingFinish();//parse.ui.ParseLoginFragmentBase.loadingFinish()
 		           // signupSuccess();//parse.ui.ParseSignupFragment.signupSuccess()
 		          } else {
@@ -166,8 +169,8 @@ public class SignupActivity extends Activity {
 		                case ParseException.USERNAME_TAKEN: 
 		                  showToast(R.string.com_parse_ui_username_taken_toast);
 		                  break;
-		                case ParseException.EMAIL_TAKEN:
-		                  showToast(R.string.com_parse_ui_email_taken_toast);
+		                case ParseException.EMAIL_TAKEN:      //由parse 去判斷email有沒有重複
+		                  showToast(R.string.com_parse_ui_email_taken_toast);  
 		                  break;
 		                default:
 		                  showToast(R.string.com_parse_ui_signup_failed_unknown_toast);

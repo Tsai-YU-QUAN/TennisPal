@@ -40,14 +40,30 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int create_account=0x7f090004;
-        public static final int signup_confirm_password_input=0x7f090002;
-        public static final int signup_email_input=0x7f090003;
-        public static final int signup_password_input=0x7f090001;
-        public static final int signup_username_input=0x7f090000;
+        public static final int AbsoluteLayout1=0x7f090000;
+        public static final int Pickphoto=0x7f090002;
+        public static final int Realname=0x7f090001;
+        public static final int UsualPlace=0x7f090003;
+        public static final int Usualtime=0x7f090004;
+        public static final int create_account=0x7f090011;
+        public static final int editfinal=0x7f090005;
+        public static final int login_password_input=0x7f090008;
+        public static final int login_username_input=0x7f090007;
+        public static final int parse_buttons=0x7f090009;
+        public static final int parse_login=0x7f090006;
+        public static final int parse_login_button=0x7f09000a;
+        public static final int parse_login_help=0x7f09000c;
+        public static final int parse_signup_button=0x7f09000b;
+        public static final int signup_confirm_password_input=0x7f09000f;
+        public static final int signup_email_input=0x7f090010;
+        public static final int signup_password_input=0x7f09000e;
+        public static final int signup_username_input=0x7f09000d;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
+        public static final int firstpersonaledit=0x7f030000;
+        public static final int home=0x7f030001;
+        public static final int login=0x7f030002;
+        public static final int main=0x7f030003;
     }
     public static final class plurals {
         public static final int com_parse_ui_password_too_short_toast=0x7f070000;
@@ -111,5 +127,6 @@ public final class R {
     public static final class style {
         public static final int ParseLoginUI_Button=0x7f080000;
         public static final int ParseLoginUI_EditText=0x7f080001;
+        public static final int ParseLoginUI_HelpButton=0x7f080002;
     }
 }

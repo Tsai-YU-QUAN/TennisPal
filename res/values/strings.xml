@@ -38,7 +38,7 @@
     <string name="com_parse_ui_mismatch_confirm_password_toast">Passwords don\'t match, please try again</string>
     <string name="com_parse_ui_no_email_toast">Please enter your email</string>
     <string name="com_parse_ui_invalid_email_toast">Email is invalid, please correct it and try again</string>
-    <string name="com_parse_ui_email_taken_toast">Email is already taken, please reset your password instead</string>
+    <string name="com_parse_ui_email_taken_toast"> 信箱已被人使用過了，請重新輸入新信箱</string>
     <string name="com_parse_ui_no_name_toast">Please enter your name</string>
     <string name="com_parse_ui_signup_failed_unknown_toast">Could not sign up, please try again later</string>
     <string name="com_parse_ui_login_help_instructions">Enter your email to recover your password</string>
