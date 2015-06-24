@@ -1,28 +1,52 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:id="@+id/parse_login"
-    >
-
-    <EditText
-        android:id="@+id/login_username_input"
-        android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#FFFAFA"
+    tools:context="com.sinch.messagingtutorial.app.LoginActivity">
+        <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        style="@style/ParseLoginUI.EditText"
-        android:hint="帳號" />
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/login_password_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/ParseLoginUI.EditText"
-        android:layout_marginTop="@dimen/com_parse_ui_small_vertical_spacing"
-        android:fontFamily="sans-serif"
-        android:hint="密碼"
-        android:inputType="textPassword"
-        android:selectAllOnFocus="true" />
+            
+       <EditText
+            android:id="@+id/login_username_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:inputType="text"
+            android:textSize="32sp"
+            android:padding="10dp"
+            android:textColor="@color/sinch_purple"
+            android:background="@drawable/inputbox"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:hint="帳號">      
+            <requestFocus/>
+        </EditText>
+        <EditText
+            android:id="@+id/login_password_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="40dp"
+            android:inputType="textPassword"
+            android:textSize="32sp"
+            android:padding="10dp"
+            android:textColor="@color/sinch_purple"
+            android:background="@drawable/inputbox"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:hint="密碼">
+        </EditText>
+
+
 
     <LinearLayout
         android:id="@+id/parse_buttons"
@@ -34,14 +58,14 @@
             android:id="@+id/parse_login_button"
             style="@style/ParseLoginUI.Button"
             android:layout_weight="0.5"
-            android:text="@string/com_parse_ui_parse_login_button_label" />
+            android:background="@drawable/button_login" />
 
         <Button
             android:id="@+id/parse_signup_button"
             style="@style/ParseLoginUI.Button"
             android:layout_marginLeft="@dimen/com_parse_ui_small_horizontal_spacing"
             android:layout_weight="0.5"
-            android:text="@string/com_parse_ui_parse_signup_button_label" />
+            android:background="@drawable/button_signup"/>
     </LinearLayout>
 
     <Button
@@ -49,5 +73,6 @@
         style="@style/ParseLoginUI.HelpButton"
         android:layout_marginTop="@dimen/com_parse_ui_small_vertical_spacing"
         android:layout_marginBottom="@dimen/com_parse_ui_small_vertical_spacing"
-        android:text="@string/com_parse_ui_forgot_password_button_label" />
-</LinearLayout>
+        android:text="HELP" />
+    </LinearLayout>
+ </RelativeLayout>   

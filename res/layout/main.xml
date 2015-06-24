@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#FFFAFA"
+     >
 
     <EditText
         android:id="@+id/signup_username_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/ParseLoginUI.EditText"
-        android:hint="真實名稱"></EditText>
+        android:hint="帳號"></EditText>
 
     <EditText
         android:id="@+id/signup_password_input"

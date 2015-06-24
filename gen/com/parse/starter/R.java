@@ -25,8 +25,14 @@ public final class R {
         public static final int com_parse_ui_twitter_login_button=0x7f04000b;
         public static final int com_parse_ui_twitter_login_button_focus=0x7f04000d;
         public static final int com_parse_ui_twitter_login_button_push=0x7f04000c;
+        public static final int dark_gray=0x7f040010;
+        public static final int off_white=0x7f04000f;
+        public static final int sinch_purple=0x7f04000e;
+        public static final int very_dark_gray=0x7f040011;
     }
     public static final class dimen {
+        public static final int activity_horizontal_margin=0x7f050007;
+        public static final int activity_vertical_margin=0x7f050008;
         public static final int com_parse_ui_horizontal_margin=0x7f050000;
         public static final int com_parse_ui_large_vertical_spacing=0x7f050004;
         public static final int com_parse_ui_small_horizontal_spacing=0x7f050006;
@@ -36,8 +42,14 @@ public final class R {
         public static final int com_parse_ui_xlarge_vertical_spacing=0x7f050005;
     }
     public static final class drawable {
-        public static final int com_parse_ui_parse_login_button_background_selector=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
+        public static final int button_login=0x7f020000;
+        public static final int button_signup=0x7f020001;
+        public static final int com_parse_ui_parse_login_button_background_selector=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int inputbox=0x7f020004;
+        public static final int launcher=0x7f020005;
+        public static final int login=0x7f020006;
+        public static final int signup=0x7f020007;
     }
     public static final class id {
         public static final int AbsoluteLayout1=0x7f090000;
@@ -45,19 +57,18 @@ public final class R {
         public static final int Realname=0x7f090001;
         public static final int UsualPlace=0x7f090003;
         public static final int Usualtime=0x7f090004;
-        public static final int create_account=0x7f090011;
+        public static final int create_account=0x7f090010;
         public static final int editfinal=0x7f090005;
-        public static final int login_password_input=0x7f090008;
-        public static final int login_username_input=0x7f090007;
-        public static final int parse_buttons=0x7f090009;
-        public static final int parse_login=0x7f090006;
-        public static final int parse_login_button=0x7f09000a;
-        public static final int parse_login_help=0x7f09000c;
-        public static final int parse_signup_button=0x7f09000b;
-        public static final int signup_confirm_password_input=0x7f09000f;
-        public static final int signup_email_input=0x7f090010;
-        public static final int signup_password_input=0x7f09000e;
-        public static final int signup_username_input=0x7f09000d;
+        public static final int login_password_input=0x7f090007;
+        public static final int login_username_input=0x7f090006;
+        public static final int parse_buttons=0x7f090008;
+        public static final int parse_login_button=0x7f090009;
+        public static final int parse_login_help=0x7f09000b;
+        public static final int parse_signup_button=0x7f09000a;
+        public static final int signup_confirm_password_input=0x7f09000e;
+        public static final int signup_email_input=0x7f09000f;
+        public static final int signup_password_input=0x7f09000d;
+        public static final int signup_username_input=0x7f09000c;
     }
     public static final class layout {
         public static final int firstpersonaledit=0x7f030000;
