@@ -7,6 +7,7 @@ import java.io.IOException;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import android.app.Activity;
@@ -33,7 +34,9 @@ public class FirstpersonalEditActivity extends Activity{
 	  String StringUsualPlace="UsualPlace";
 	  String StringUsualtime="Usualtime";
 	  String StringPhoto="Photo";
-	   
+	  String StringUserID="UserID";
+	  ParseUser currentUser = ParseUser.getCurrentUser();
+
 
 	 
 	  
@@ -81,10 +84,12 @@ public class FirstpersonalEditActivity extends Activity{
 			Editable GetUsualPlace=UsualPlace.getText();
 			Editable GetUsualtime=Usualtime.getText();
 
-			ParseObject testObject = new ParseObject(table_name);    //上傳三項
+			ParseObject testObject = new ParseObject(table_name);    //上傳三項 +再加使用者id上傳parse
 			testObject.put(StringRealname,GetRealname.toString());
 			testObject.put(StringUsualPlace,GetUsualPlace.toString());
 			testObject.put(StringUsualtime,GetUsualtime.toString());
+			testObject.put(StringUserID,currentUser.getObjectId());
+			System.out.println("currentUsergetObjectId()"+currentUser.getObjectId());//使用者id上傳parse
 			testObject.saveInBackground();
 			
 			Intent intent =new Intent();

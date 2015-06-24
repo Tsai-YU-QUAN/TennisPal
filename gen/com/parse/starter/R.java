@@ -57,12 +57,16 @@ public final class R {
     }
     public static final class id {
         public static final int AbsoluteLayout1=0x7f090000;
+        public static final int ParseRealname=0x7f090016;
+        public static final int ParseUsualplace=0x7f090018;
+        public static final int ParseUsualtime=0x7f090019;
         public static final int Personal_Profile=0x7f09000a;
         public static final int Pickphoto=0x7f090002;
         public static final int Quick_play=0x7f090009;
         public static final int Realname=0x7f090001;
         public static final int Tournament=0x7f090008;
         public static final int UsualPlace=0x7f090003;
+        public static final int Usualplace=0x7f090017;
         public static final int Usualtime=0x7f090004;
         public static final int create_account=0x7f090014;
         public static final int editfinal=0x7f090005;
@@ -72,6 +76,7 @@ public final class R {
         public static final int parse_login_button=0x7f09000e;
         public static final int parse_login_help=0x7f09000f;
         public static final int parse_signup_button=0x7f09000b;
+        public static final int personalprfile=0x7f090015;
         public static final int signup_confirm_password_input=0x7f090012;
         public static final int signup_email_input=0x7f090013;
         public static final int signup_password_input=0x7f090011;
@@ -83,6 +88,7 @@ public final class R {
         public static final int home=0x7f030001;
         public static final int login=0x7f030002;
         public static final int main=0x7f030003;
+        public static final int personalproflie=0x7f030004;
     }
     public static final class plurals {
         public static final int com_parse_ui_password_too_short_toast=0x7f070000;

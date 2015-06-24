@@ -44,7 +44,7 @@
             android:layout_alignLeft="@+id/parse_buttons"
             android:layout_alignParentTop="true"
             android:layout_marginTop="37dp"
-            android:padding="40dp"
+            android:padding="55dp"
             android:text="S P o r t p a l"
             android:textColor="#cc66cc"
             android:textSize="32sp" />
