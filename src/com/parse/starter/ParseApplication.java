@@ -23,7 +23,9 @@ public class ParseApplication extends Application {
     Parse.initialize(this, "krmA9wmTZU7nqIRQlaJvx5LwS3GvIl67W8PtrKLe", "zbmgcvXYKadgvNnhCo9Aegp4fVLUEPWMs52YMBN1");
 
     ParseUser.enableAutomaticUser();
-    ParseACL defaultACL = new ParseACL();
+    ParseACL defaultACL = new ParseACL();  //像 Twitter 這樣的應用程式，使用者內容一般為對外公開
+    defaultACL.setPublicReadAccess(true);
+    ParseACL.setDefaultACL(defaultACL, true);
     // Optionally enable public read access.
     // defaultACL.setPublicReadAccess(true);
 

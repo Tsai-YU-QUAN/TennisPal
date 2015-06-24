@@ -33,7 +33,7 @@ public class FirstpersonalEditActivity extends Activity{
 	  String StringUsualPlace="UsualPlace";
 	  String StringUsualtime="Usualtime";
 	  String StringPhoto="Photo";
-	  
+	   
 
 	 
 	  

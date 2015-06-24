@@ -1,20 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:background="#FFFAFA"
-    
-     >
+    tools:context="com.sinch.messagingtutorial.app.LoginActivity">
 
-<TextView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="TennisPal"
-android:textSize="20sp"
-android:layout_marginBottom="10sp"
-/>
+        <LinearLayout
+            android:id="@+id/parse_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titie"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="126dp" >
 
+            <ImageButton
+                android:id="@+id/Tournament"
+                style="@style/ParseLoginUI.Button"
+                android:layout_weight="0.5"
+                android:background="@drawable/track_ico" />
 
+            <ImageButton
+                android:id="@+id/Quick_play"
+                style="@style/ParseLoginUI.Button"
+                android:layout_marginLeft="@dimen/com_parse_ui_small_horizontal_spacing"
+                android:layout_weight="0.5"
+                android:background="@drawable/pennisicon" />
+           <ImageButton
+                android:id="@+id/Personal_Profile"
+                style="@style/ParseLoginUI.Button"
+                android:layout_marginLeft="@dimen/com_parse_ui_small_horizontal_spacing"
+                android:layout_weight="0.5"
+                android:background="@drawable/icon_user_default" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/titie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/parse_buttons"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="37dp"
+            android:padding="40dp"
+            android:text="S P o r t p a l"
+            android:textColor="#cc66cc"
+            android:textSize="32sp" />
+
+          <Button
+              android:id="@+id/parse_signup_button"
+              style="@style/ParseLoginUI.Button"
+              android:layout_alignParentBottom="true"
+              android:layout_alignParentLeft="true"
+              android:layout_marginBottom="22dp"
+              android:layout_weight="0.5"
+              android:background="@drawable/setting_icon" />
  
- </LinearLayout>
+ </RelativeLayout>
