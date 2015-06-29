@@ -2,7 +2,10 @@ package com.parse.starter;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.sinch.android.rtc.SinchError;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,13 +14,28 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-public class LoginActivity extends Activity{
+public class LoginActivity extends BaseActivity implements SinchService.StartFailedListener  {
 	
 	  private EditText usernameField;
 	  private EditText passwordField;
 	  private Button  LoginButton;
 	  private Button  SignButton;
+	  
+	  
+	    @Override
+	    public void onStartFailed(SinchError error) {
+	        Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show();
+	    }
+	    public void onStarted() {     // 正常 1->3->4 
+	    	System.out.println("PleaseGO3");
+	    	
+	        /*Intent messagingActivity = new Intent();
+	        messagingActivity.setClass(SignupActivity.this,com.sinch.android.rtc.sample.messaging.MessagingActivity.class);
+	        startActivity(messagingActivity);*/
+	       
+	    }
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,9 +55,9 @@ public class LoginActivity extends Activity{
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-		    ParseUser currentUser = ParseUser.getCurrentUser();
-		    if (currentUser != null) {
-		    	currentUser.logOut();
+		    ParseUser currentUserlogout = ParseUser.getCurrentUser();
+		    if (currentUserlogout != null) {
+		    	currentUserlogout.logOut();
 		    	System.out.println("要先登出anonymous");
 		    String username = usernameField.getText().toString(); //username=>帳號
 		    String password = passwordField.getText().toString();
@@ -50,12 +68,28 @@ public class LoginActivity extends Activity{
 				public void done(ParseUser user, ParseException e) {
 					// TODO Auto-generated method stub
 					if(user!=null){
-					    ParseUser currentUser = ParseUser.getCurrentUser();
+						
+		        	    ParseUser currentUser = ParseUser.getCurrentUser();    //準備登入sinch系統
+		        	    ParseQuery<ParseObject> tablequery = ParseQuery.getQuery("personaltable");
+		        	    System.out.println("UserID"+currentUser.getObjectId());
+		                if (!getSinchServiceInterface().isStarted()) {
+		                	System.out.println("LoginActivity1");
+		                	getSinchServiceInterface().startClient(currentUser.getObjectId());  //核心跟sinch server做連接
+				        	  Intent intent = new Intent();
+				        	  intent.setClass(LoginActivity.this, MessagingActivity.class);
+				        	  startActivity(intent);
+		                } else {
+		                	System.out.println("LoginActivity2");
+		                   // Intent messagingActivity = new Intent();
+		                   // messagingActivity.setClass(SignupActivity.this,com.sinch.android.rtc.sample.messaging.MessagingActivity.class);
+		                  //  startActivity(messagingActivity);
 
-						System.out.println("Successuser"+currentUser);
-						Intent intent = new Intent();
+		                }
+						
+
+						/*Intent intent = new Intent();
 						intent.setClass(LoginActivity.this, HomeActivity.class);
-						startActivity(intent);
+						startActivity(intent);*/
 
 						
 					}else{

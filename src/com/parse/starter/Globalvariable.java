@@ -9,6 +9,16 @@ public class Globalvariable {
 	public final static String Usualtime="Usualtime";
 	public final static String table_name="personaltable";
 	public final static String StringUserID="UserID";
+	
+   public static String realname="";
+   public static String sendername="";
+   public static String recipient="1vuUpOQS32";   //aWKOK5Q2oh=>蔡足兒 1vuUpOQS32=>蔡育銓
+   
+   
+   
+
+   
+
 
 
 }

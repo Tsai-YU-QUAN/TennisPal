@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.starter.R;
 import com.sinch.android.rtc.messaging.Message;
 
@@ -26,7 +30,12 @@ public class MessageAdapter extends BaseAdapter {
     private SimpleDateFormat mFormatter;
 
     private LayoutInflater mInflater;
-
+    Message message;
+    String name ;
+    
+    TextView txtSender ;
+    TextView txtMessage ;
+    TextView txtDate ;
     public MessageAdapter(Activity activity) {
         mInflater = activity.getLayoutInflater();
         mMessages = new ArrayList<Pair<Message, Integer>>();
@@ -76,18 +85,53 @@ public class MessageAdapter extends BaseAdapter {
             }
             convertView = mInflater.inflate(res, viewGroup, false);
         }
+         message = mMessages.get(i).first;
+         SenderIDtoRealname();
 
-        Message message = mMessages.get(i).first;
-        String name = message.getSenderId();
+        txtSender = (TextView) convertView.findViewById(R.id.txtSender);
+        txtMessage = (TextView) convertView.findViewById(R.id.txtMessage);
+        txtDate = (TextView) convertView.findViewById(R.id.txtDate);
 
-        TextView txtSender = (TextView) convertView.findViewById(R.id.txtSender);
-        TextView txtMessage = (TextView) convertView.findViewById(R.id.txtMessage);
-        TextView txtDate = (TextView) convertView.findViewById(R.id.txtDate);
 
-        txtSender.setText(name);  
-        txtMessage.setText(message.getTextBody());
-        txtDate.setText(mFormatter.format(message.getTimestamp()));
 
         return convertView;
+    }
+    
+    
+    
+    
+    public void SenderIDtoRealname(){
+	    ParseQuery<ParseObject> tablequery = ParseQuery.getQuery("personaltable");
+
+	   tablequery.whereEqualTo("UserID", message.getSenderId());  // 一堆陌生人的id  => 取得你想要交到朋友的id
+	    
+	    
+	    tablequery.findInBackground(new FindCallback<ParseObject>() {        //讀取文字
+	    	public void done(List<ParseObject> me, ParseException e) {
+	    		if(e==null){
+	    			
+	    			//for(int i=0;i<me.size();i++){
+	    			System.out.println("MessageAdapter"+" "+" "+me.size());
+	    			Globalvariable.sendername=me.get(0).get(Globalvariable.Realname).toString();//可能會因為Realname==null造成crash
+	    			
+	    			
+	    			//if(realname!=null){
+		    			System.out.println("MessageAdapter"+" "+Globalvariable.sendername);
+		    	         name = Globalvariable.sendername;
+		    	         txtSender.setText(name);  
+		    	         txtMessage.setText(message.getTextBody());
+		    	         txtDate.setText(mFormatter.format(message.getTimestamp()));
+
+	    			//}
+	    			//}
+	    			
+	    			//ParseRealname.setText(realname);
+	    		}
+	    		else{
+	    			System.out.println("MessagingActivityerror");
+	    		}
+	    	}});
+
+    	
     }
 }

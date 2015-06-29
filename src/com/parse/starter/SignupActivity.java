@@ -79,9 +79,6 @@ public class SignupActivity extends BaseActivity implements SinchService.StartFa
     public void onStarted() {     // 正常 1->3->4 
     	System.out.println("PleaseGO3");
     	
-  	  Intent intent = new Intent();
-  	  intent.setClass(SignupActivity.this, FirstpersonalEditActivity.class);
-  	  startActivity(intent);
         /*Intent messagingActivity = new Intent();
         messagingActivity.setClass(SignupActivity.this,com.sinch.android.rtc.sample.messaging.MessagingActivity.class);
         startActivity(messagingActivity);*/
@@ -193,20 +190,15 @@ public class SignupActivity extends BaseActivity implements SinchService.StartFa
 		                	System.out.println("PleaseGO");
 		                	getSinchServiceInterface().startClient(currentUser.getObjectId());  //核心跟sinch server做連接
 		                    showSpinner();
-		                    Intent messagingActivity = new Intent();
-		                    messagingActivity.setClass(SignupActivity.this,MessagingActivity.class);
-		                    startActivity(messagingActivity);
-				        	/*Intent intent = new Intent();
+				        	Intent intent = new Intent();
 				        	intent.setClass(SignupActivity.this, FirstpersonalEditActivity.class);
-				        	startActivity(intent);*/
+				        	startActivity(intent);
 		                } else {
 		                	System.out.println("PleaseGO2");
 		                   // Intent messagingActivity = new Intent();
 		                   // messagingActivity.setClass(SignupActivity.this,com.sinch.android.rtc.sample.messaging.MessagingActivity.class);
 		                  //  startActivity(messagingActivity);
-				        	  Intent intent = new Intent();
-				        	  intent.setClass(SignupActivity.this, FirstpersonalEditActivity.class);
-				        	  startActivity(intent);
+
 		                }
 		           // loadingFinish();//parse.ui.ParseLoginFragmentBase.loadingFinish()
 		           // signupSuccess();//parse.ui.ParseSignupFragment.signupSuccess()
