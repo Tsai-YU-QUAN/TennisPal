@@ -1,6 +1,7 @@
 package com.parse.starter;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,14 +17,19 @@ import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.PushService;
 import com.parse.SignUpCallback;
+import com.parse.starter.R.color;
+import com.sinch.android.rtc.SinchError;
+import com.sinch.android.rtc.sample.messaging.MessagingActivity;
+import com.sinch.android.rtc.sample.messaging.SinchService;
 
 
 
 
-public class SignupActivity extends Activity {
+public class SignupActivity extends BaseActivity implements SinchService.StartFailedListener  {
 	/** Called when the activity is first created. */
 	
 	  private EditText usernameField;
@@ -34,6 +40,8 @@ public class SignupActivity extends Activity {
 	  private Button createAccountButton;
 	  private static final int minPasswordLength = 6;
 	  private static final String USER_OBJECT_NAME_FIELD = "name";
+	  private ProgressDialog mSpinner;
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,40 @@ public class SignupActivity extends Activity {
 	    
 
 	}
+	
+    /*@Override
+    protected void onServiceConnected() {
+    	createAccountButton.setEnabled(true);
+        getSinchServiceInterface().setStartListener(this);
+    }*/
+
+    @Override
+    protected void onPause() {
+        if (mSpinner != null) {
+            mSpinner.dismiss();
+        }
+        super.onPause();
+    }
+	
+    @Override
+    public void onStartFailed(SinchError error) {
+        Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show();
+        if (mSpinner != null) {
+            mSpinner.dismiss();
+        }
+    }
+	
+    public void onStarted() {     // 正常 1->3->4 
+    	System.out.println("PleaseGO3");
+    	
+  	  Intent intent = new Intent();
+  	  intent.setClass(SignupActivity.this, FirstpersonalEditActivity.class);
+  	  startActivity(intent);
+        /*Intent messagingActivity = new Intent();
+        messagingActivity.setClass(SignupActivity.this,com.sinch.android.rtc.sample.messaging.MessagingActivity.class);
+        startActivity(messagingActivity);*/
+       
+    }
 	
 	  protected String getLogTag() {
 		    return null;
@@ -150,11 +192,30 @@ public class SignupActivity extends Activity {
 		         //   return;
 		         // }
 
-		          if (e == null) {
+		          if (e == null) {   
 		        	  System.out.println("google");
-		        	  Intent intent = new Intent();
-		        	  intent.setClass(SignupActivity.this, FirstpersonalEditActivity.class);
-		        	  startActivity(intent);
+		        	    ParseUser currentUser = ParseUser.getCurrentUser();    //準備登入sinch系統
+		        	    ParseQuery<ParseObject> tablequery = ParseQuery.getQuery("personaltable");
+		        	    System.out.println("UserID"+currentUser.getObjectId());
+		                if (!getSinchServiceInterface().isStarted()) {
+		                	System.out.println("PleaseGO");
+		                	getSinchServiceInterface().startClient(currentUser.getObjectId());  //核心跟sinch server做連接
+		                    showSpinner();
+		                    Intent messagingActivity = new Intent();
+		                    messagingActivity.setClass(SignupActivity.this,com.sinch.android.rtc.sample.messaging.MessagingActivity.class);
+		                    startActivity(messagingActivity);
+				        	/*Intent intent = new Intent();
+				        	intent.setClass(SignupActivity.this, FirstpersonalEditActivity.class);
+				        	startActivity(intent);*/
+		                } else {
+		                	System.out.println("PleaseGO2");
+		                   // Intent messagingActivity = new Intent();
+		                   // messagingActivity.setClass(SignupActivity.this,com.sinch.android.rtc.sample.messaging.MessagingActivity.class);
+		                  //  startActivity(messagingActivity);
+				        	  Intent intent = new Intent();
+				        	  intent.setClass(SignupActivity.this, FirstpersonalEditActivity.class);
+				        	  startActivity(intent);
+		                }
 		           // loadingFinish();//parse.ui.ParseLoginFragmentBase.loadingFinish()
 		           // signupSuccess();//parse.ui.ParseSignupFragment.signupSuccess()
 		          } else {
@@ -182,6 +243,25 @@ public class SignupActivity extends Activity {
 		    }
 			
 		  }
-		} //Onclick
-	};
+		} 
+	};    //Onclick
+	
+    private void showSpinner() {
+        mSpinner = new ProgressDialog(this);
+        mSpinner.setTitle("正在登入");
+        mSpinner.setMessage("請稍等...");
+        mSpinner.show();
+    }
+	/*
+    private void loginClicked() {
+
+        if (!getSinchServiceInterface().isStarted()) {
+        	System.out.println("PleaseGO");
+            getSinchServiceInterface().startClient(userName);  //核心跟sinch server做連接
+            showSpinner();
+        } else {
+        	System.out.println("PleaseGO2");
+            openMessagingActivity();
+        }
+    }*/
 }

@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -39,10 +41,11 @@ public class PersonalprofileActivity extends Activity {
 
 	    ParseUser currentUser = ParseUser.getCurrentUser();
 	    ParseQuery<ParseObject> tablequery = ParseQuery.getQuery("personaltable");
+	    System.out.println("UserID"+currentUser.getObjectId());
 	    tablequery.whereEqualTo("UserID", currentUser.getObjectId());  //限制從自己id取得
 	    
 	    
-	    tablequery.findInBackground(new FindCallback<ParseObject>() {
+	    tablequery.findInBackground(new FindCallback<ParseObject>() {        //讀取文字
 	    	public void done(List<ParseObject> me, ParseException e) {
 	    		if(e==null){
 	    			realname=me.get(0).getString(com.parse.starter.Globalvariable.Realname).toString();
@@ -52,8 +55,21 @@ public class PersonalprofileActivity extends Activity {
 	    			ParseRealname.setText(realname);
 	    			ParseUsualplace.setText(usualplace);
 	    			ParseUsualtime.setText(usualtime);
-
 	    			System.out.println("realname"+realname);
+	    			
+	    		    /*ParseFile image = ((ParseObject) me).getParseFile("data");
+	    		    final ParseImageView imageView = (ParseImageView) findViewById(R.id.personalprfile);
+	    		    imageView.setParseFile(image);
+	    		    imageView.loadInBackground(new GetDataCallback() {
+	    		         public void done(byte[] data, ParseException e) {
+	    		         // The image is loaded and displayed!                    
+	    		         int oldHeight = imageView.getHeight();
+	    		         int oldWidth = imageView.getWidth(); 
+	    		         System.out.println("imageView height = " + oldHeight);
+	    		         System.out.println("imageView width = " + oldWidth);
+	    		             
+	    		         }
+	    		    });*/
 	    			
 	    		}else{
 	    			
@@ -61,6 +77,10 @@ public class PersonalprofileActivity extends Activity {
 	    		
 	    	}
 		});
+	    
+	    
+	    
+
 	    
 	  /*  tablequery.findInBackground(new FindCallback<ParseUser>() {			
 			@Override

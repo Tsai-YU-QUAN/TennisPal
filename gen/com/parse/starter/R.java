@@ -42,53 +42,72 @@ public final class R {
         public static final int com_parse_ui_xlarge_vertical_spacing=0x7f050005;
     }
     public static final class drawable {
-        public static final int button_login=0x7f020000;
-        public static final int button_signup=0x7f020001;
-        public static final int com_parse_ui_parse_login_button_background_selector=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int icon_user_default=0x7f020004;
-        public static final int inputbox=0x7f020005;
-        public static final int launcher=0x7f020006;
-        public static final int login=0x7f020007;
-        public static final int pennisicon=0x7f020008;
-        public static final int setting_icon=0x7f020009;
-        public static final int signup=0x7f02000a;
-        public static final int track_ico=0x7f02000b;
+        public static final int bg_shadow=0x7f020000;
+        public static final int button_login=0x7f020001;
+        public static final int button_send=0x7f020002;
+        public static final int button_signup=0x7f020003;
+        public static final int com_parse_ui_parse_login_button_background_selector=0x7f020004;
+        public static final int grey_bubble=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int icon_user_default=0x7f020007;
+        public static final int inputbox=0x7f020008;
+        public static final int launcher=0x7f020009;
+        public static final int login=0x7f02000a;
+        public static final int pennisicon=0x7f02000b;
+        public static final int purple_bubble=0x7f02000c;
+        public static final int send_button_normal=0x7f02000d;
+        public static final int send_button_pressed=0x7f02000e;
+        public static final int setting_icon=0x7f02000f;
+        public static final int signup=0x7f020010;
+        public static final int startbg=0x7f020011;
+        public static final int track_ico=0x7f020012;
     }
     public static final class id {
         public static final int AbsoluteLayout1=0x7f090000;
-        public static final int ParseRealname=0x7f090016;
-        public static final int ParseUsualplace=0x7f090018;
-        public static final int ParseUsualtime=0x7f090019;
+        public static final int ParseRealname=0x7f09001f;
+        public static final int ParseUsualplace=0x7f090021;
+        public static final int ParseUsualtime=0x7f090022;
         public static final int Personal_Profile=0x7f09000a;
         public static final int Pickphoto=0x7f090002;
         public static final int Quick_play=0x7f090009;
         public static final int Realname=0x7f090001;
         public static final int Tournament=0x7f090008;
         public static final int UsualPlace=0x7f090003;
-        public static final int Usualplace=0x7f090017;
+        public static final int Usualplace=0x7f090020;
         public static final int Usualtime=0x7f090004;
+        public static final int btnSend=0x7f09001d;
         public static final int create_account=0x7f090014;
         public static final int editfinal=0x7f090005;
         public static final int login_password_input=0x7f09000d;
         public static final int login_username_input=0x7f09000c;
+        public static final int lstMessages=0x7f09001a;
         public static final int parse_buttons=0x7f090006;
         public static final int parse_login_button=0x7f09000e;
         public static final int parse_login_help=0x7f09000f;
         public static final int parse_signup_button=0x7f09000b;
-        public static final int personalprfile=0x7f090015;
+        public static final int personalprfile=0x7f09001e;
+        public static final int relRecipient=0x7f090018;
+        public static final int relSendMessage=0x7f09001b;
         public static final int signup_confirm_password_input=0x7f090012;
         public static final int signup_email_input=0x7f090013;
         public static final int signup_password_input=0x7f090011;
         public static final int signup_username_input=0x7f090010;
         public static final int titie=0x7f090007;
+        public static final int txtDate=0x7f090016;
+        public static final int txtMessage=0x7f090017;
+        public static final int txtRecipient=0x7f090019;
+        public static final int txtSender=0x7f090015;
+        public static final int txtTextBody=0x7f09001c;
     }
     public static final class layout {
         public static final int firstpersonaledit=0x7f030000;
         public static final int home=0x7f030001;
         public static final int login=0x7f030002;
         public static final int main=0x7f030003;
-        public static final int personalproflie=0x7f030004;
+        public static final int message_left=0x7f030004;
+        public static final int message_right=0x7f030005;
+        public static final int messaging=0x7f030006;
+        public static final int personalproflie=0x7f030007;
     }
     public static final class plurals {
         public static final int com_parse_ui_password_too_short_toast=0x7f070000;

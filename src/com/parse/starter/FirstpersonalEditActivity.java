@@ -7,6 +7,7 @@ import java.io.IOException;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -48,10 +49,12 @@ public class FirstpersonalEditActivity extends Activity{
 	
     Button Pickphoto = (Button)findViewById(R.id.Pickphoto);
     Button editfinal = (Button)findViewById(R.id.editfinal);
+    
+    
     Pickphoto.setOnClickListener(photo);
     editfinal.setOnClickListener(edit);
 	
-	
+
 	
 	
 	}
@@ -135,6 +138,8 @@ public class FirstpersonalEditActivity extends Activity{
 						if(e==null){
 			    			ParseObject testObject = new ParseObject(table_name);
 							testObject.put(StringPhoto, photoFile);
+							testObject.put(StringUserID,currentUser.getObjectId());
+							System.out.println("currentUsergetObjectId()"+currentUser.getObjectId());//使用者id上傳parse
 							testObject.saveInBackground();
 							System.out.println("UpYesPhoto");
 						}
