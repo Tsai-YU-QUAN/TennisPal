@@ -1,4 +1,4 @@
-package com.sinch.android.rtc.sample.messaging;
+package com.parse.starter;
 
 import java.util.List;
 

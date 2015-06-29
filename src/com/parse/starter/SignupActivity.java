@@ -1,9 +1,7 @@
 package com.parse.starter;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,18 +11,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.Parse;
-import com.parse.ParseAnalytics;
 import com.parse.ParseException;
-import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.PushService;
 import com.parse.SignUpCallback;
-import com.parse.starter.R.color;
 import com.sinch.android.rtc.SinchError;
-import com.sinch.android.rtc.sample.messaging.MessagingActivity;
-import com.sinch.android.rtc.sample.messaging.SinchService;
 
 
 
@@ -202,7 +194,7 @@ public class SignupActivity extends BaseActivity implements SinchService.StartFa
 		                	getSinchServiceInterface().startClient(currentUser.getObjectId());  //核心跟sinch server做連接
 		                    showSpinner();
 		                    Intent messagingActivity = new Intent();
-		                    messagingActivity.setClass(SignupActivity.this,com.sinch.android.rtc.sample.messaging.MessagingActivity.class);
+		                    messagingActivity.setClass(SignupActivity.this,MessagingActivity.class);
 		                    startActivity(messagingActivity);
 				        	/*Intent intent = new Intent();
 				        	intent.setClass(SignupActivity.this, FirstpersonalEditActivity.class);
