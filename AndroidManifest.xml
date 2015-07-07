@@ -84,6 +84,8 @@
         <activity android:name=".MessagingActivity" android:screenOrientation="portrait"/>
 
         <service android:name=".SinchService"/>
+        <service android:name=".ReadWriteService"/>
+        
         
         
         

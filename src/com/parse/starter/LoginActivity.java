@@ -47,6 +47,9 @@ public class LoginActivity extends  BaseActivity implements SinchService.StartFa
 	    LoginButton = (Button) findViewById(R.id.parse_login_button);
 	    SignButton = (Button) findViewById(R.id.parse_signup_button);
 	    
+	    Intent intent = new Intent(LoginActivity.this, ReadWriteService.class);
+	    startService(intent);
+	    
 	    LoginButton.setOnClickListener(Loginaccount);
 	    SignButton.setOnClickListener(Signaccount);
 	}

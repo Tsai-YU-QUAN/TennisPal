@@ -75,6 +75,7 @@ public final class R {
         public static final int UsualPlace=0x7f090003;
         public static final int Usualplace=0x7f090020;
         public static final int Usualtime=0x7f090004;
+        public static final int ViewNewFriend=0x7f090024;
         public static final int addfriend=0x7f090023;
         public static final int btnSend=0x7f09001d;
         public static final int create_account=0x7f090014;

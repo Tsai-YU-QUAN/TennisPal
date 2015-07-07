@@ -37,6 +37,8 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
 	String usualplace="";
 	String usualtime="";
 	String userID="";
+	String SendLike;
+	String ReceiveLike;
 	Button Addfriend;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,35 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
 		
 	
 	}
+	public void onResume(){
+		System.out.println("QuickplayOnResume"+" "+SendLike+" "+ReceiveLike);
+		TextView viewNewFriend =(TextView)findViewById(R.id.ViewNewFriend);
+		if(SendLike!=null && ReceiveLike!=null){
+			Addfriend.setVisibility(View.INVISIBLE);
+			viewNewFriend.setText("已成為好友");
+			System.out.println("已成為好友");
+		}
+		super.onResume();
+	}
+	
+    @Override
+    public void onDestroy() {
+        if (getSinchServiceInterface() != null) {
+            getSinchServiceInterface().removeMessageClientListener(this);
+            getSinchServiceInterface().stopClient();
+        }
+		if(SendLike!=null && ReceiveLike!=null){
+			SendLike=null;
+			ReceiveLike=null;
+		}
+        super.onDestroy();
+    }
+    @Override
+    public void onStop() {
+        Log.w(TAG, "App stopped");
+
+        super.onStop();
+    }
 	
 	private OnClickListener addfriend =new OnClickListener() {     //互相加入好友的機制
 		
@@ -90,15 +121,6 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
     public void onMessageDelivered(MessageClient client, MessageDeliveryInfo deliveryInfo) {
         Log.d(TAG, "onDelivered");
     }
-    
-    @Override
-    public void onDestroy() {
-        if (getSinchServiceInterface() != null) {
-            getSinchServiceInterface().removeMessageClientListener(this);
-            getSinchServiceInterface().stopClient();
-        }
-        super.onDestroy();
-    }
 
     @Override
     public void onServiceConnected() {
@@ -125,20 +147,23 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
         
         getSinchServiceInterface().sendMessage(Globalvariable.recipient, "Hi"); 
         //*****由getSinchService去做sendmessage********
+        
+        finish();  //refresh頁面
+        startActivity(getIntent());
 		
 		
 	}
 	   @Override
 	    public void onIncomingMessage(MessageClient client, Message message) {
 	    	System.out.println("QuickplayActivity"+message.getTextBody());
-	       // mMessageAdapter.addMessage(message, MessageAdapter.DIRECTION_INCOMING); //mMessageAdapter
+	    	ReceiveLike=message.getTextBody();
 	    }
 
 	    @Override    //MessageClientListener
 	    public void onMessageSent(MessageClient client, Message message, String recipientId) { //client是自己 sinch的onMessageSent
 	      
 	    	System.out.println("QuickplayActivity"+message.getTextBody()+" "+recipientId);
-	    	//  mMessageAdapter.addMessage(message, MessageAdapter.DIRECTION_OUTGOING);
+	    	SendLike=message.getTextBody();
 	    }
 
 

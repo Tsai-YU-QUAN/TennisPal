@@ -2,130 +2,142 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFAFA"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="#FFFAFA"
-    tools:context="com.sinch.messagingtutorial.app.LoginActivity">
+    tools:context="com.sinch.messagingtutorial.app.LoginActivity" >
 
-        <TextView
-            android:id="@+id/Realname"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/personalprfile"
-            android:layout_toRightOf="@+id/personalprfile"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="left"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"
-            android:text="名字"
-            android:textSize="30sp"
-            android:textStyle="bold|italic" />
+    <TextView
+        android:id="@+id/Realname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/personalprfile"
+        android:layout_toRightOf="@+id/personalprfile"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="left"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:text="名字"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/ParseRealname"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/Realname"
-            android:layout_below="@+id/Realname"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="left"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"
-            android:textSize="25sp"
-            android:textStyle="bold|italic" />
+    <TextView
+        android:id="@+id/ParseRealname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Realname"
+        android:layout_below="@+id/Realname"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="left"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:textSize="25sp"
+        android:textStyle="bold|italic" />
 
-        
-        <ImageView
-            android:id="@+id/personalprfile"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="52dp"
-            android:maxHeight="1000dp"
-            android:maxWidth="1000dp"
-            android:src="@drawable/launcher"
-             />
-  
-          
+    <ImageView
+        android:id="@+id/personalprfile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="52dp"
+        android:maxHeight="1000dp"
+        android:maxWidth="1000dp"
+        android:src="@drawable/launcher" />
 
-        
+    <TextView
+        android:id="@+id/Usualplace"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/personalprfile"
+        android:layout_below="@+id/personalprfile"
+        android:layout_marginTop="34dp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="left"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:text="出沒地點"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/Usualplace"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/personalprfile"
-            android:layout_below="@+id/personalprfile"
-            android:layout_marginTop="34dp"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="left"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"
-            android:text="出沒地點"
-            android:textSize="30sp"
-            android:textStyle="bold|italic" />
+    <TextView
+        android:id="@+id/ParseUsualplace"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/personalprfile"
+        android:layout_below="@+id/personalprfile"
+        android:layout_marginTop="74dp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="left"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:textSize="25sp"
+        android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/ParseUsualplace"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/personalprfile"
-            android:layout_below="@+id/personalprfile"
-            android:layout_marginTop="74dp"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="left"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"
-            android:textSize="25sp"
-            android:textStyle="bold|italic" />
+    <TextView
+        android:id="@+id/ParseUsualtime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ParseUsualplace"
+        android:layout_below="@+id/ParseUsualplace"
+        android:layout_marginTop="42dp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="left"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:textSize="25sp"
+        android:textStyle="bold|italic" />
 
-          <TextView
-              android:id="@+id/ParseUsualtime"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_alignLeft="@+id/ParseUsualplace"
-              android:layout_below="@+id/ParseUsualplace"
-              android:layout_marginTop="42dp"
-              android:ellipsize="marquee"
-              android:focusable="true"
-              android:focusableInTouchMode="true"
-              android:gravity="left"
-              android:marqueeRepeatLimit="marquee_forever"
-              android:singleLine="true"
-              android:textSize="25sp"
-              android:textStyle="bold|italic" />
+    <TextView
+        android:id="@+id/Usualtime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ParseUsualplace"
+        android:layout_below="@+id/ParseUsualplace"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="left"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:text="出沒時間"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
 
-          <TextView
-              android:id="@+id/Usualtime"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_alignLeft="@+id/ParseUsualplace"
-              android:layout_below="@+id/ParseUsualplace"
-              android:ellipsize="marquee"
-              android:focusable="true"
-              android:focusableInTouchMode="true"
-              android:gravity="left"
-              android:marqueeRepeatLimit="marquee_forever"
-              android:singleLine="true"
-              android:text="出沒時間"
-              android:textSize="30sp"
-              android:textStyle="bold|italic" />
-          
-          <Button
-              android:id="@+id/addfriend"
-              style="@style/ParseLoginUI.Button"
-              android:layout_weight="0.5"
-              android:text="加入好友" />
+    <Button
+        android:id="@+id/addfriend"
+        style="@style/ParseLoginUI.Button"
+        android:layout_alignLeft="@+id/ParseUsualtime"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="0.5"
+        android:text="加入好友" />
 
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/ViewNewFriend"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/addfriend"
+        android:layout_alignBottom="@+id/addfriend"
+        android:layout_alignLeft="@+id/addfriend"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="left"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
+
+</RelativeLayout>

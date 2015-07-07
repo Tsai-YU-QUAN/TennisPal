@@ -12,7 +12,7 @@ public class Globalvariable {
 	
    public static String realname="";
    public static String sendername="";
-   public static String recipient="1vuUpOQS32";   //aWKOK5Q2oh=>蔡足兒 1vuUpOQS32=>蔡育銓
+   public static String recipient="aWKOK5Q2oh";   //aWKOK5Q2oh=>蔡足兒 1vuUpOQS32=>蔡育銓
                                                   //y2jHYT5M0O=>蔡美兒
    
    
