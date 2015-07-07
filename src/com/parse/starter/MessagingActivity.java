@@ -18,6 +18,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.starter.R;
 import com.sinch.android.rtc.PushPair;
+import com.sinch.android.rtc.SinchError;
 import com.sinch.android.rtc.messaging.Message;
 import com.sinch.android.rtc.messaging.MessageClient;
 import com.sinch.android.rtc.messaging.MessageClientListener;
@@ -25,7 +26,7 @@ import com.sinch.android.rtc.messaging.MessageDeliveryInfo;
 import com.sinch.android.rtc.messaging.MessageFailureInfo;
 
 
-public class MessagingActivity extends BaseActivity implements MessageClientListener {
+public class MessagingActivity extends BaseActivity implements MessageClientListener{
 
     private static final String TAG = "MessagingActivity";
 
@@ -43,20 +44,22 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
         mTxtRecipient = (TextView) findViewById(R.id.txtRecipient);
         mTxtTextBody = (EditText) findViewById(R.id.txtTextBody);
-        IDtoRalname();  //以後要改進，儘量存在Local上，儘量減少網路上的不必要的溝通  table?
-        RealnametoID();  //id->realname(find frirend)  realname->id(modelue)
+        IDtoRealname();  //以後要改進，儘量存在Local上，儘量減少網路上的不必要的溝通  table?
+       // RealnametoID();  //id->realname(find frirend)  realname->id(modelue)
         mMessageAdapter = new MessageAdapter(this);
         ListView messagesList = (ListView) findViewById(R.id.lstMessages);
         messagesList.setAdapter(mMessageAdapter);
-
         mBtnSend = (Button) findViewById(R.id.btnSend);
         mBtnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendMessage();   //既送出訊息
+                sendMessage();   //即送出訊息
             }
         });
     }
+    
+    
+
 
     @Override
     public void onDestroy() {
@@ -90,7 +93,8 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
             Toast.makeText(this, "No text message", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        
+        
         getSinchServiceInterface().sendMessage(recipient, textBody);   //由getSinchService去做sendmessage
         mTxtTextBody.setText("");
     }
@@ -132,7 +136,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
         Log.d(TAG, "onDelivered");
     }
     
-    public void IDtoRalname(){
+    public void IDtoRealname(){
 	    ParseQuery<ParseObject> tablequery = ParseQuery.getQuery("personaltable");
 
 	   tablequery.whereEqualTo("UserID", Globalvariable.recipient);  // 一堆陌生人的id  => 取得你想要交到朋友的id
@@ -167,4 +171,6 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     public void RealnametoID(){
     	
     }
+    
+
 }

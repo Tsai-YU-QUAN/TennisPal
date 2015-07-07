@@ -75,6 +75,7 @@ public final class R {
         public static final int UsualPlace=0x7f090003;
         public static final int Usualplace=0x7f090020;
         public static final int Usualtime=0x7f090004;
+        public static final int addfriend=0x7f090023;
         public static final int btnSend=0x7f09001d;
         public static final int create_account=0x7f090014;
         public static final int editfinal=0x7f090005;
@@ -101,13 +102,15 @@ public final class R {
     }
     public static final class layout {
         public static final int firstpersonaledit=0x7f030000;
-        public static final int home=0x7f030001;
-        public static final int login=0x7f030002;
-        public static final int main=0x7f030003;
-        public static final int message_left=0x7f030004;
-        public static final int message_right=0x7f030005;
-        public static final int messaging=0x7f030006;
-        public static final int personalproflie=0x7f030007;
+        public static final int friend=0x7f030001;
+        public static final int home=0x7f030002;
+        public static final int login=0x7f030003;
+        public static final int main=0x7f030004;
+        public static final int message_left=0x7f030005;
+        public static final int message_right=0x7f030006;
+        public static final int messaging=0x7f030007;
+        public static final int personalproflie=0x7f030008;
+        public static final int quickplay=0x7f030009;
     }
     public static final class plurals {
         public static final int com_parse_ui_password_too_short_toast=0x7f070000;
