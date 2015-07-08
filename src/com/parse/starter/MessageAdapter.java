@@ -241,6 +241,13 @@ public class MessageAdapter extends BaseAdapter {
         TextView txtSender = (TextView) convertView.findViewById(R.id.txtSender);
         TextView txtMessage = (TextView) convertView.findViewById(R.id.txtMessage);
         TextView txtDate = (TextView) convertView.findViewById(R.id.txtDate);
+        if(name.equals("aWKOK5Q2oh")){     //之後要在FriendActivity就要存FriendID和USername的關係
+        	name="蔡足兒";
+        }else{
+        	name="蔡育銓";
+
+        }
+        	     //aWKOK5Q2oh=>蔡足兒 1vuUpOQS32=>蔡育銓
         txtSender.setText(name);  
         txtMessage.setText(message.getTextBody());
         txtDate.setText(mFormatter.format(message.getTimestamp()));

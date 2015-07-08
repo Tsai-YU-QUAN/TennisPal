@@ -35,6 +35,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     private EditText mTxtTextBody;
     private Button mBtnSend;
     String friendID;
+    String receiptname;
   //  String realname="";
 
     @Override
@@ -45,11 +46,14 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     	
     	Bundle bundle = getIntent().getExtras();
     	
+    	receiptname=bundle.getString("receiptname");
     	friendID=bundle.getString("friendID");
-    	System.out.println("friendID"+friendID);
+
+    	
+    	System.out.println("receiptname"+receiptname+" "+friendID);
         mTxtRecipient = (TextView) findViewById(R.id.txtRecipient);
         mTxtTextBody = (EditText) findViewById(R.id.txtTextBody);
-		mTxtRecipient.setText(friendID);
+		mTxtRecipient.setText(receiptname);
 
        // IDtoRealname();  //以後要改進，儘量存在Local上，儘量減少網路上的不必要的溝通  table?
        // RealnametoID();  //id->realname(find frirend)  realname->id(modelue)
@@ -90,7 +94,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
     private void sendMessage() {
     	
-        String recipient = Globalvariable.recipient;           //aWKOK5Q2oh=>蔡足兒 1vuUpOQS32=>蔡育銓
+        String recipient = friendID;           //aWKOK5Q2oh=>蔡足兒 1vuUpOQS32=>蔡育銓
         String textBody = mTxtTextBody.getText().toString(); 
         if (recipient.isEmpty()) {
             Toast.makeText(this, "No recipient added", Toast.LENGTH_SHORT).show();
@@ -143,7 +147,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
         Log.d(TAG, "onDelivered");
     }
     
-    public void IDtoRealname(){
+   /* public void IDtoRealname(){
 	    ParseQuery<ParseObject> tablequery = ParseQuery.getQuery("personaltable");
 
 	   tablequery.whereEqualTo("FriendID", friendID);  // 一堆陌生人的id  => 取得你想要交到朋友的id
@@ -172,7 +176,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 	    	}});
 
     	
-    }
+    }*/
 
     
     public void RealnametoID(){

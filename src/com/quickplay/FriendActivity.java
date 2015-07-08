@@ -49,8 +49,8 @@ public class FriendActivity extends Activity {   ////Activity 和 Listactivity�
 					    ParseQuery<ParseObject> tablequery = ParseQuery.getQuery("personaltable");
 
 						   tablequery.whereEqualTo("UserID", friendID);  //從friend_table 到 personal_table
-						    
-						    
+						                                                // id to friendname
+						            
 						    tablequery.findInBackground(new FindCallback<ParseObject>() {        //讀取文字
 						    	public void done(List<ParseObject> me, ParseException e) {
 						    		if(e==null){
@@ -112,7 +112,8 @@ public class FriendActivity extends Activity {   ////Activity 和 Listactivity�
         		 
         		 Intent intent =new Intent();
         		 intent.setClass(FriendActivity.this, MessagingActivity.class);
-        		 intent.putExtra("friendID", mListItems.get(position));   ///取得名字傳到MessageActivity
+        		 intent.putExtra("receiptname", mListItems.get(position));   ///取得名字傳到MessageActivity
+        		 intent.putExtra("friendID", friendID);
         		 startActivity(intent);
         	 }
         	

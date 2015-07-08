@@ -50,7 +50,7 @@
             android:layout_marginTop="52dp"
             android:maxHeight="1000dp"
             android:maxWidth="1000dp"
-            android:src="@drawable/launcher"
+            android:src="@drawable/launcher2"
              />
   
           
