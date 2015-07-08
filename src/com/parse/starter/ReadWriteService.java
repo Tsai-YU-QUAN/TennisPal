@@ -7,7 +7,7 @@ import android.util.Log;
 import java.util.Date;
 
 //繼承android.app.Service
-public class ReadWriteService extends Service {
+public class ReadWriteService extends Service {   // 隨時會收到有人寄好友信或是新的聊天訊息
     private Handler handler = new Handler();
 
     @Override

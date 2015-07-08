@@ -2,32 +2,29 @@ package com.quickplay;
 
 import java.util.List;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
-import com.parse.starter.Globalvariable;
-import com.parse.starter.HomeActivity;
-import com.parse.starter.MessageAdapter;
-import com.parse.starter.R;
-import com.parse.starter.R.color;
-import com.sinch.android.rtc.PushPair;
-import com.sinch.android.rtc.messaging.Message;
-import com.sinch.android.rtc.messaging.MessageClient;
-import com.sinch.android.rtc.messaging.MessageClientListener;
-import com.sinch.android.rtc.messaging.MessageDeliveryInfo;
-import com.sinch.android.rtc.messaging.MessageFailureInfo;
-
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.starter.Globalvariable;
+import com.parse.starter.R;
+import com.sinch.android.rtc.PushPair;
+import com.sinch.android.rtc.messaging.Message;
+import com.sinch.android.rtc.messaging.MessageClient;
+import com.sinch.android.rtc.messaging.MessageClientListener;
+import com.sinch.android.rtc.messaging.MessageDeliveryInfo;
+import com.sinch.android.rtc.messaging.MessageFailureInfo;
 
 
 public class QuickplayActivity extends QuickbaseActivity  implements MessageClientListener  {
@@ -39,32 +36,109 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
 	String userID="";
 	String SendLike;
 	String ReceiveLike;
+	String RecipientId;
+	String table_name="friend";
+	Boolean terminate=false;
+	Boolean if_friend=false;
 	Button Addfriend;
+	Thread initThread;
+	private Handler mUI_Handler =new Handler();
+	private Handler mThHandler;
+	private HandlerThread mThread;
+	
+	ParseUser currentUser = ParseUser.getCurrentUser();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
 		//requestWindowFeature(Window.FEATURE_NO_TITLE);//hide tittle
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.quickplay);
-	    Addfriend =(Button)findViewById(R.id.addfriend);
-
-		
+		Addfriend =(Button)findViewById(R.id.addfriend);
 		
 		//ParseImageView personalprfile = (ParseImageView) findViewById(R.id.personalprfile);
 		Addfriend.setOnClickListener(addfriend);
+		System.out.println("QuickplayActivity");
+		if(!if_friend){
+		mThread =new HandlerThread("name");
+		mThread.start();
+		mThHandler=new Handler(mThread.getLooper());
+		mThHandler.post(r1);
+		}
+		else {
+		    TextView viewNewFriend =(TextView)findViewById(R.id.ViewNewFriend);
+			Addfriend.setVisibility(View.INVISIBLE);
+			viewNewFriend.setText("已成為好友");
+			
+		}
+
 		
 		TomakefriendView();
 		
 	
 	}
-	public void onResume(){
-		System.out.println("QuickplayOnResume"+" "+SendLike+" "+ReceiveLike);
-		TextView viewNewFriend =(TextView)findViewById(R.id.ViewNewFriend);
-		if(SendLike!=null && ReceiveLike!=null){
-			Addfriend.setVisibility(View.INVISIBLE);
-			viewNewFriend.setText("已成為好友");
-			System.out.println("已成為好友");
+	private Runnable r1 = new Runnable() {    //持續找是不是好友
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			System.out.println("QuickplayActivity2");
+			while(!terminate){
+				System.out.println("LOOP");
+					if(SendLike!=null && ReceiveLike!=null){
+						ParseObject testObject = new ParseObject(table_name);    //上傳好朋友 id 和自己的ID
+						testObject.put(Globalvariable.StringUserID,currentUser.getObjectId());   
+						testObject.put(Globalvariable.StringFriendID,RecipientId);
+						testObject.saveInBackground();
+						terminate=true;   //找到即不用在持續找
+						mUI_Handler.post(r2);
+
+
+					      //老闆指定每隔幾秒要做一次工作1 (單位毫秒:1000等於1秒)
+						try {
+							Thread.sleep(3000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					
+				}	
+			}
+			
 		}
+	};
+	private Runnable r2 =new Runnable() {  //畫面控制button textview
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			System.out.println("QuickplayActivity3");
+
+			
+			    TextView viewNewFriend =(TextView)findViewById(R.id.ViewNewFriend);
+				Addfriend.setVisibility(View.INVISIBLE);
+				viewNewFriend.setText("已成為好友");
+				//要存成已成為好友的state 在Quickplay裏面就不顯示這個人*************************
+				if_friend=true;
+				System.out.println("已成為好友");
+			
+			
+		}
+	};
+	
+	public void onResume(){
 		super.onResume();
+	}
+	public void onPause(){
+		if(if_friend==true){
+			System.out.println("if_friend"+if_friend);
+			if_friend=true;
+		}else {
+			System.out.println("if_friend"+if_friend);
+			if_friend=false;
+		}
+		
+		
+		super.onPause();
 	}
 	
     @Override
@@ -85,6 +159,7 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
 
         super.onStop();
     }
+    
 	
 	private OnClickListener addfriend =new OnClickListener() {     //互相加入好友的機制
 		
@@ -148,8 +223,8 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
         getSinchServiceInterface().sendMessage(Globalvariable.recipient, "Hi"); 
         //*****由getSinchService去做sendmessage********
         
-        finish();  //refresh頁面
-        startActivity(getIntent());
+        //finish();  //refresh頁面
+        //startActivity(getIntent());
 		
 		
 	}
@@ -164,6 +239,7 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
 	      
 	    	System.out.println("QuickplayActivity"+message.getTextBody()+" "+recipientId);
 	    	SendLike=message.getTextBody();
+	    	RecipientId=recipientId;
 	    }
 
 

@@ -8,6 +8,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.quickplay.FriendActivity;
 import com.quickplay.QuickplayActivity;
 import com.sinch.android.rtc.SinchError;
 
@@ -106,12 +107,12 @@ public class HomeActivity extends  BaseActivity implements SinchService.StartFai
             if (!getSinchServiceInterface().isStarted()) {
             	System.out.println("HomeActivity_tournament");
             	getSinchServiceInterface().startClient(currentUser.getObjectId());  //核心跟sinch server做連接
-    			Intent intent =new Intent();  
-    			intent.setClass(HomeActivity.this, MessagingActivity.class);
+    			Intent intent =new Intent();
+    			intent.setClass(HomeActivity.this, FriendActivity.class);
     			startActivity(intent);                                 
             } else {
     			Intent intent =new Intent();  
-    			intent.setClass(HomeActivity.this, MessagingActivity.class);
+    			intent.setClass(HomeActivity.this, FriendActivity.class);
     			startActivity(intent);
 
             }

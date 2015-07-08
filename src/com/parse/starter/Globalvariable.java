@@ -9,11 +9,14 @@ public class Globalvariable {
 	public final static String Usualtime="Usualtime";
 	public final static String table_name="personaltable";
 	public final static String StringUserID="UserID";
+	public final static String StringFriendID="FriendID";
+
 	
    public static String realname="";
+   public static String receiptname="";
    public static String sendername="";
    public static String recipient="aWKOK5Q2oh";   //aWKOK5Q2oh=>蔡足兒 1vuUpOQS32=>蔡育銓
-                                                  //y2jHYT5M0O=>蔡美兒
+                                                  //y2jHYT5M0O=>蔡美兒   Test用的
    
    
    

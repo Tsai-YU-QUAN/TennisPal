@@ -34,6 +34,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     private TextView mTxtRecipient;
     private EditText mTxtTextBody;
     private Button mBtnSend;
+    String friendID;
   //  String realname="";
 
     @Override
@@ -41,10 +42,16 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.messaging);
     	System.out.println("PleaseGO4");
-
+    	
+    	Bundle bundle = getIntent().getExtras();
+    	
+    	friendID=bundle.getString("friendID");
+    	System.out.println("friendID"+friendID);
         mTxtRecipient = (TextView) findViewById(R.id.txtRecipient);
         mTxtTextBody = (EditText) findViewById(R.id.txtTextBody);
-        IDtoRealname();  //以後要改進，儘量存在Local上，儘量減少網路上的不必要的溝通  table?
+		mTxtRecipient.setText(friendID);
+
+       // IDtoRealname();  //以後要改進，儘量存在Local上，儘量減少網路上的不必要的溝通  table?
        // RealnametoID();  //id->realname(find frirend)  realname->id(modelue)
         mMessageAdapter = new MessageAdapter(this);
         ListView messagesList = (ListView) findViewById(R.id.lstMessages);
@@ -139,7 +146,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     public void IDtoRealname(){
 	    ParseQuery<ParseObject> tablequery = ParseQuery.getQuery("personaltable");
 
-	   tablequery.whereEqualTo("UserID", Globalvariable.recipient);  // 一堆陌生人的id  => 取得你想要交到朋友的id
+	   tablequery.whereEqualTo("FriendID", friendID);  // 一堆陌生人的id  => 取得你想要交到朋友的id
 	    
 	    
 	    tablequery.findInBackground(new FindCallback<ParseObject>() {        //讀取文字
