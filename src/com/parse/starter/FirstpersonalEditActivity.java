@@ -4,13 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
-import com.parse.SaveCallback;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,6 +15,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 public class FirstpersonalEditActivity extends Activity{
 	
@@ -36,6 +36,8 @@ public class FirstpersonalEditActivity extends Activity{
 	  String StringUsualtime="Usualtime";
 	  String StringPhoto="Photo";
 	  String StringUserID="UserID";
+      Bitmap bitmap = null;
+
 	  ParseUser currentUser = ParseUser.getCurrentUser();
 
 
@@ -83,24 +85,61 @@ public class FirstpersonalEditActivity extends Activity{
 		    EditText UsualPlace = (EditText)findViewById(R.id.UsualPlace);
 		    EditText Usualtime = (EditText)findViewById(R.id.Usualtime);
 		    
-			Editable GetRealname=Realname.getText();
-			Editable GetUsualPlace=UsualPlace.getText();
-			Editable GetUsualtime=Usualtime.getText();
-
-			ParseObject testObject = new ParseObject(table_name);    //上傳三項 +再加使用者id上傳parse
-			testObject.put(StringRealname,GetRealname.toString());
-			testObject.put(StringUsualPlace,GetUsualPlace.toString());
-			testObject.put(StringUsualtime,GetUsualtime.toString());
-			testObject.put(StringUserID,currentUser.getObjectId());
-			System.out.println("currentUsergetObjectId()"+currentUser.getObjectId());//使用者id上傳parse
-			testObject.saveInBackground();
+			final Editable GetRealname=Realname.getText();
+			final Editable GetUsualPlace=UsualPlace.getText();
+			final Editable GetUsualtime=Usualtime.getText();
 			
-			Intent intent =new Intent();
-			intent.setClass(FirstpersonalEditActivity.this,HomeActivity.class);
-			startActivity(intent);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            if(bitmap==null){
+                    Toast.makeText(v.getContext(), "還未上傳照片...", Toast.LENGTH_LONG).show();               
+            }
+            else if(GetRealname.toString().length()<1){
+                Toast.makeText(v.getContext(), "還未輸入姓名...", Toast.LENGTH_LONG).show();
+            }
+            else if(GetUsualPlace.toString().length()<1){
+                Toast.makeText(v.getContext(), "還未輸入出沒的地點...", Toast.LENGTH_LONG).show();
+            }
+            else if(GetUsualtime.toString().length()<1){
+                Toast.makeText(v.getContext(), "還未輸入出沒時間...", Toast.LENGTH_LONG).show();
+            }
+            else{
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            byte[] photodata = stream.toByteArray();
+        	final ParseFile photoFile= new ParseFile("data.jpg",photodata); //bitmap to jpg
+        	
+			photoFile.saveInBackground(new SaveCallback() {     ///上傳照片
+
+				@Override
+				public void done(final ParseException e) {
+					if(e==null){
+		    			ParseObject testObject = new ParseObject(table_name);
+						testObject.put(StringPhoto, photoFile);
+						
+						testObject.put(StringRealname,GetRealname.toString());
+						testObject.put(StringUsualPlace,GetUsualPlace.toString());
+						testObject.put(StringUsualtime,GetUsualtime.toString());
+						testObject.put(StringUserID,currentUser.getObjectId());
+						System.out.println("currentUsergetObjectId()"+currentUser.getObjectId());//使用者id上傳parse
+						
+						testObject.saveInBackground();
+						System.out.println("UpYesPhoto");//可能之後要做請等待的標語
+						Intent intent =new Intent();
+						intent.setClass(FirstpersonalEditActivity.this,HomeActivity.class);
+						startActivity(intent);
+					}
+					else{
+						System.out.println("Parseerror");
+					}
+					
+				}
+			});  
+
+			//testObject.saveInBackground();
+			
+			
+            }}
 
 			
-		}
 	};
 	
 	
@@ -115,7 +154,6 @@ public class FirstpersonalEditActivity extends Activity{
             {
                 // 利用 Uri 顯示 ImageView 圖片
             	
-                Bitmap bitmap = null;
 				try {
 					bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);//uri to bitmap
 
@@ -126,7 +164,7 @@ public class FirstpersonalEditActivity extends Activity{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+               /* ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                 byte[] photodata = stream.toByteArray();
             	final ParseFile photoFile= new ParseFile("data.jpg",photodata); //bitmap to jpg
@@ -148,7 +186,7 @@ public class FirstpersonalEditActivity extends Activity{
 						}
 						
 					}
-				});            	
+				});    */        	
             }
             else
             {
