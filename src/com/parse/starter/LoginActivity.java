@@ -10,6 +10,7 @@ import com.quickplay.QuickplayActivity;
 import com.sinch.android.rtc.SinchError;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,7 @@ public class LoginActivity extends  BaseActivity implements SinchService.StartFa
 	  private EditText passwordField;
 	  private Button  LoginButton;
 	  private Button  SignButton;
+	  ProgressDialog dialog;
 	  
 	   @Override
 	    public void onStartFailed(SinchError error) {
@@ -37,6 +39,13 @@ public class LoginActivity extends  BaseActivity implements SinchService.StartFa
 	        startActivity(messagingActivity);*/
 	       
 	    }
+	    public void onPause() {
+	     if(dialog!=null){
+      	  dialog.dismiss();
+	     }
+	     super.onPause();
+	    	
+	    };
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,6 +68,8 @@ public class LoginActivity extends  BaseActivity implements SinchService.StartFa
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+            dialog = ProgressDialog.show(LoginActivity.this,
+                    "登入中", "請 稍 等 . . . . ",true);
 		    ParseUser currentUserlogout = ParseUser.getCurrentUser();
 		    if (currentUserlogout != null) {
 		    	currentUserlogout.logOut();
@@ -82,6 +93,7 @@ public class LoginActivity extends  BaseActivity implements SinchService.StartFa
 				        	  Intent intent = new Intent();
 				        	  intent.setClass(LoginActivity.this, HomeActivity.class);  //可切換要哪一個activity
 				        	  startActivity(intent);                                    //
+				        	  dialog.dismiss();
 		                } else {
 		                	System.out.println("LoginActivity2");
 				        	  Intent intent = new Intent();

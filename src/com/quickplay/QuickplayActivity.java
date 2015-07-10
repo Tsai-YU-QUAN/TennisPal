@@ -83,7 +83,7 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
 			// TODO Auto-generated method stub
 			System.out.println("QuickplayActivity2");
 			while(!terminate){
-				System.out.println("LOOP");
+				//System.out.println("LOOP");
 					if(SendLike!=null && ReceiveLike!=null){
 						ParseObject testObject = new ParseObject(table_name);    //上傳好朋友 id 和自己的ID
 						testObject.put(Globalvariable.StringUserID,currentUser.getObjectId());   

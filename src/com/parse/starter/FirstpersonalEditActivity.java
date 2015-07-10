@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.parse.ParseException;
@@ -22,6 +24,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.quickplay.FriendActivity;
 
 public class FirstpersonalEditActivity extends Activity{
 	
@@ -37,7 +40,8 @@ public class FirstpersonalEditActivity extends Activity{
 	  String StringPhoto="Photo";
 	  String StringUserID="UserID";
       Bitmap bitmap = null;
-
+      ProgressDialog dialog;
+      ImageView personalview;
 	  ParseUser currentUser = ParseUser.getCurrentUser();
 
 
@@ -51,7 +55,7 @@ public class FirstpersonalEditActivity extends Activity{
 	
     Button Pickphoto = (Button)findViewById(R.id.Pickphoto);
     Button editfinal = (Button)findViewById(R.id.editfinal);
-    
+    personalview =(ImageView) findViewById(R.id.firstpersonalprfile);
     
     Pickphoto.setOnClickListener(photo);
     editfinal.setOnClickListener(edit);
@@ -81,6 +85,8 @@ public class FirstpersonalEditActivity extends Activity{
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+            dialog = ProgressDialog.show(FirstpersonalEditActivity.this,
+                    "個人資料註冊中", "請 稍 等 . . . . ",true);
 		    EditText Realname = (EditText)findViewById(R.id.Realname);
 		    EditText UsualPlace = (EditText)findViewById(R.id.UsualPlace);
 		    EditText Usualtime = (EditText)findViewById(R.id.Usualtime);
@@ -91,15 +97,19 @@ public class FirstpersonalEditActivity extends Activity{
 			
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             if(bitmap==null){
+            	  dialog.dismiss();
                     Toast.makeText(v.getContext(), "還未上傳照片...", Toast.LENGTH_LONG).show();               
             }
             else if(GetRealname.toString().length()<1){
+            	  dialog.dismiss();
                 Toast.makeText(v.getContext(), "還未輸入姓名...", Toast.LENGTH_LONG).show();
             }
             else if(GetUsualPlace.toString().length()<1){
+          	  dialog.dismiss();
                 Toast.makeText(v.getContext(), "還未輸入出沒的地點...", Toast.LENGTH_LONG).show();
             }
             else if(GetUsualtime.toString().length()<1){
+          	  dialog.dismiss();
                 Toast.makeText(v.getContext(), "還未輸入出沒時間...", Toast.LENGTH_LONG).show();
             }
             else{
@@ -126,6 +136,7 @@ public class FirstpersonalEditActivity extends Activity{
 						Intent intent =new Intent();
 						intent.setClass(FirstpersonalEditActivity.this,HomeActivity.class);
 						startActivity(intent);
+		            	  dialog.dismiss();
 					}
 					else{
 						System.out.println("Parseerror");
@@ -156,6 +167,8 @@ public class FirstpersonalEditActivity extends Activity{
             	
 				try {
 					bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);//uri to bitmap
+					personalview.setImageURI(uri);
+					
 
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block

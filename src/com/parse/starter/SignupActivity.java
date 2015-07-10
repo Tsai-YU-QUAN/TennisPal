@@ -33,6 +33,7 @@ public class SignupActivity extends BaseActivity implements SinchService.StartFa
 	  private static final int minPasswordLength = 6;
 	  private static final String USER_OBJECT_NAME_FIELD = "name";
 	  private ProgressDialog mSpinner;
+	  private ProgressDialog dialog;
 
 
 	@Override
@@ -119,11 +120,12 @@ public class SignupActivity extends BaseActivity implements SinchService.StartFa
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			
+            dialog = ProgressDialog.show(SignupActivity.this,
+                    "註冊中", "請 稍 等 . . . . ",true);
 		    ParseUser currentUser = ParseUser.getCurrentUser();
 		    if (currentUser != null) {
 		    	currentUser.logOut();
-		    	System.out.println("要先登出anonymous");
+		    	System.out.println("要先登出anonymous");		    	
 			
 		    String username = usernameField.getText().toString();
 		    String password = passwordField.getText().toString();
@@ -144,20 +146,26 @@ public class SignupActivity extends BaseActivity implements SinchService.StartFa
 		    }*/
 
 		    if (username.length() == 0) {
+		      	  dialog.dismiss();
 		      showToast(R.string.com_parse_ui_no_username_toast);
 		    } else if (password.length() == 0) {
+		      	  dialog.dismiss();
 		      showToast(R.string.com_parse_ui_no_password_toast);
 		    } else if (password.length() < minPasswordLength) {
+		      	  dialog.dismiss();
 		      showToast(getResources().getQuantityString(
 		          R.plurals.com_parse_ui_password_too_short_toast,
 		          minPasswordLength, minPasswordLength));
 		    } else if (passwordAgain.length() == 0) {
+		      	  dialog.dismiss();
 		      showToast(R.string.com_parse_ui_reenter_password_toast);
 		    } else if (!password.equals(passwordAgain)) {        //判斷pass是否和pass_again一樣
+		      	  dialog.dismiss();
 		      showToast(R.string.com_parse_ui_mismatch_confirm_password_toast);
 		      confirmPasswordField.selectAll();
 		      confirmPasswordField.requestFocus();
 		    } else if (email != null && email.length() == 0) {
+		      	  dialog.dismiss();
 		      showToast(R.string.com_parse_ui_no_email_toast);
 		    } else {
 		      ParseUser user = new ParseUser();
@@ -189,15 +197,17 @@ public class SignupActivity extends BaseActivity implements SinchService.StartFa
 		                if (!getSinchServiceInterface().isStarted()) {
 		                	System.out.println("PleaseGO");
 		                	getSinchServiceInterface().startClient(currentUser.getObjectId());  //核心跟sinch server做連接
-		                    showSpinner();
+		                   // showSpinner();
 				        	Intent intent = new Intent();
 				        	intent.setClass(SignupActivity.this, FirstpersonalEditActivity.class);
 				        	startActivity(intent);
+				        	dialog.dismiss();
 		                } else {
 		                	System.out.println("PleaseGO2");
-		                   // Intent messagingActivity = new Intent();
-		                   // messagingActivity.setClass(SignupActivity.this,com.sinch.android.rtc.sample.messaging.MessagingActivity.class);
-		                  //  startActivity(messagingActivity);
+				        	Intent intent = new Intent();
+				        	intent.setClass(SignupActivity.this, FirstpersonalEditActivity.class);
+				        	startActivity(intent);
+				        	dialog.dismiss();
 
 		                }
 		           // loadingFinish();//parse.ui.ParseLoginFragmentBase.loadingFinish()
