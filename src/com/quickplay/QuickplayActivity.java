@@ -2,6 +2,8 @@ package com.quickplay;
 
 import java.util.List;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -13,7 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -45,6 +50,7 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
 	private Handler mUI_Handler =new Handler();
 	private Handler mThHandler;
 	private HandlerThread mThread;
+	ParseFile image;
 	
 	ParseUser currentUser = ParseUser.getCurrentUser();
 	@Override
@@ -58,7 +64,13 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
 		//ParseImageView personalprfile = (ParseImageView) findViewById(R.id.personalprfile);
 		Addfriend.setOnClickListener(addfriend);
 		System.out.println("QuickplayActivity");
-		if(!if_friend){
+		
+    	Bundle bundle = getIntent().getExtras();
+    	
+    	//realname=bundle.getString("realname");
+    	userID=bundle.getString("userid");
+    	
+		if(!if_friend){                       //這一塊要不要成為好友，之後會移到RandomFriendActivity
 		mThread =new HandlerThread("name");
 		mThread.start();
 		mThHandler=new Handler(mThread.getLooper());
@@ -125,9 +137,11 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
 		}
 	};
 	
+	@Override
 	public void onResume(){
 		super.onResume();
 	}
+	@Override
 	public void onPause(){
 		if(if_friend==true){
 			System.out.println("if_friend"+if_friend);
@@ -211,17 +225,16 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
         Addfriend.setEnabled(enabled);
     }
 	
-	public void sendMessage(){
+	public void sendMessage(){               //送的人ID
 		
         String recipient = userID;           //aWKOK5Q2oh=>蔡足兒 1vuUpOQS32=>蔡育銓
         if (recipient.isEmpty()) {
             Toast.makeText(this, "No recipient added", Toast.LENGTH_SHORT).show();
             return;
         }
-        
-        
-        getSinchServiceInterface().sendMessage(Globalvariable.recipient, "Hi"); 
-        //*****由getSinchService去做sendmessage********
+         
+        getSinchServiceInterface().sendMessage(recipient, "Hi"); 
+        //*****由getSinchService去做sendmessage********!!!!!!!!!!!!
         
         //finish();  //refresh頁面
         //startActivity(getIntent());
@@ -230,14 +243,14 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
 	}
 	   @Override
 	    public void onIncomingMessage(MessageClient client, Message message) {
-	    	System.out.println("QuickplayActivity"+message.getTextBody());
+	    	System.out.println("QuickplayActivity"+message.getTextBody()+client.toString());
 	    	ReceiveLike=message.getTextBody();
 	    }
 
 	    @Override    //MessageClientListener
 	    public void onMessageSent(MessageClient client, Message message, String recipientId) { //client是自己 sinch的onMessageSent
 	      
-	    	System.out.println("QuickplayActivity"+message.getTextBody()+" "+recipientId);
+	    	System.out.println("QuickplayActivityonMessageSent"+message.getTextBody()+" "+recipientId);
 	    	SendLike=message.getTextBody();
 	    	RecipientId=recipientId;
 	    }
@@ -251,20 +264,66 @@ public class QuickplayActivity extends QuickbaseActivity  implements MessageClie
     ParseUser currentUser = ParseUser.getCurrentUser();
     ParseQuery<ParseObject> tablequery = ParseQuery.getQuery("personaltable");
     System.out.println("UserID"+currentUser.getObjectId());
-    tablequery.whereNotEqualTo("UserID", currentUser.getObjectId());  //限制從自己id取得
+    tablequery.whereEqualTo("UserID",userID );  //限制得到你點的人的
     
     
     tablequery.findInBackground(new FindCallback<ParseObject>() {        //讀取其他人的資料，看是否要交朋友，之後會顯示多朋友
-    	public void done(List<ParseObject> me, ParseException e) {
+    	@Override
+		public void done(List<ParseObject> me, ParseException e) {
     		if(e==null){
     			int i=0;
     			for(;i<me.size();i++){
     				realname=me.get(i).getString(com.parse.starter.Globalvariable.Realname).toString();
     				usualplace=me.get(i).getString(com.parse.starter.Globalvariable.UsualPlace).toString();
     				usualtime=me.get(i).getString(com.parse.starter.Globalvariable.Usualtime).toString();
-    				userID  = me.get(i).getString(com.parse.starter.Globalvariable.StringUserID).toString();
+    				//userID  = me.get(i).getString(com.parse.starter.Globalvariable.StringUserID).toString();
+    		        image =(ParseFile)me.get(i).get("Photo");	        
 
     			}
+    			
+    			
+    		    image.getDataInBackground(new GetDataCallback() {
+					
+					@Override
+					public void done(byte[] data, ParseException e) {
+						// TODO Auto-generated method stub
+						if(e==null){
+			    			System.out.println("personalprofile"+" "+data.length);
+                            final Bitmap bmp = BitmapFactory.decodeByteArray(data, 0,data.length);
+                            // Get the ImageView from main.xml
+                            //ImageView image = (ImageView) findViewById(R.id.ad1);
+                            final ParseImageView imageView = (ParseImageView)findViewById(R.id.personalprfile);
+
+                           // ImageView imageView=(ImageView) findViewById(R.id.personalprfile);
+                            // Set the Bitmap into the
+                            // ImageView
+                            imageView.setParseFile(image);
+                            imageView.setImageBitmap(bmp);
+                           /* imageView.loadInBackground(new GetDataCallback() {
+                                public void done(byte[] data, ParseException e) {
+                                // The image is loaded and displayed!                    
+                                int oldHeight = imageView.getHeight();
+                                int oldWidth = imageView.getWidth();     
+                                System.out.println("imageView height = " + oldHeight);
+                                System.out.println("imageView width = " + oldWidth);
+                                imageView.setImageBitmap(bmp);
+
+
+                               // Log.v("LOG!!!!!!", "imageView height = " + oldHeight);      // DISPLAYS 90 px
+                               // Log.v("LOG!!!!!!", "imageView width = " + oldWidth);        // DISPLAYS 90 px      
+                                }
+                            });*/
+							
+						}
+						else{
+			    			System.out.println("personalprofilerror");
+
+						}
+						
+					}
+				});
+    			
+
 				System.out.println("realname"+realname+" "+userID);
 				ParseUsualtime.setText(usualtime);
 				ParseUsualplace.setText(usualplace);

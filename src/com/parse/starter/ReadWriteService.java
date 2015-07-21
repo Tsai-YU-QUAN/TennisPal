@@ -3,8 +3,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
-import android.util.Log;
-import java.util.Date;
 
 //繼承android.app.Service
 public class ReadWriteService extends Service {   // 隨時會收到有人寄好友信或是新的聊天訊息
@@ -28,7 +26,8 @@ public class ReadWriteService extends Service {   // 隨時會收到有人寄好
     }
     
     private Runnable showTime = new Runnable() {
-        public void run() {
+        @Override
+		public void run() {
             //log目前時間
         	//System.out.println("toString())"+new Date().toString());
             //Log.i("time:", new Date().toString());

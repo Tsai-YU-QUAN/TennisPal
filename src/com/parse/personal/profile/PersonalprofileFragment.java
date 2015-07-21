@@ -2,11 +2,13 @@ package com.parse.personal.profile;
 
 import java.util.List;
 
-import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
@@ -19,26 +21,28 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.starter.R;
 
-public class PersonalprofileActivity extends Activity {
+public class PersonalprofileFragment extends Fragment {
 
 	String realname="";
 	String usualplace="";
 	String usualtime="";
-	 
+	private View v;
 	
+	public PersonalprofileFragment() {
+		//mColorRes = colorRes;
+		//setRetainInstance(true);
+	}
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.personalproflie);
-		final TextView ParseUsualplace =(TextView)findViewById(R.id.ParseUsualplace);
-		final TextView ParseUsualtime =(TextView)findViewById(R.id.ParseUsualtime);
-		final TextView ParseRealname =(TextView)findViewById(R.id.ParseRealname);
-		//ParseImageView personalprfile = (ParseImageView) findViewById(R.id.personalprfile);
-
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
-
+		v=inflater.inflate(R.layout.personalproflie,container,false);
 		
-
+		final TextView ParseUsualplace =(TextView)v.findViewById(R.id.ParseUsualplace);
+		final TextView ParseUsualtime =(TextView)v.findViewById(R.id.ParseUsualtime);
+		final TextView ParseRealname =(TextView)v.findViewById(R.id.ParseRealname);
+		
+		
 	    ParseUser currentUser = ParseUser.getCurrentUser();
 	    ParseQuery<ParseObject> tablequery = ParseQuery.getQuery("personaltable");
 	    System.out.println("UserID"+currentUser.getObjectId());
@@ -70,7 +74,8 @@ public class PersonalprofileActivity extends Activity {
 		});*/
 	    
 	    tablequery.findInBackground(new FindCallback<ParseObject>() {        //讀取文字
-	    	public void done(List<ParseObject> me, ParseException e) {
+	    	@Override
+			public void done(List<ParseObject> me, ParseException e) {
 	    		if(e==null){
 	    			realname=me.get(0).getString(com.parse.starter.Globalvariable.Realname).toString();
 	    			usualplace=me.get(0).getString(com.parse.starter.Globalvariable.UsualPlace).toString();
@@ -97,7 +102,7 @@ public class PersonalprofileActivity extends Activity {
                                 final Bitmap bmp = BitmapFactory.decodeByteArray(data, 0,data.length);
                                 // Get the ImageView from main.xml
                                 //ImageView image = (ImageView) findViewById(R.id.ad1);
-                                final ParseImageView imageView = (ParseImageView) findViewById(R.id.personalprfile);
+                                final ParseImageView imageView = (ParseImageView) v.findViewById(R.id.personalprfile);
 
                                // ImageView imageView=(ImageView) findViewById(R.id.personalprfile);
                                 // Set the Bitmap into the
@@ -179,6 +184,13 @@ public class PersonalprofileActivity extends Activity {
 		System.out.println("Successuser2"+currentUser);
 		
 		
+		return v;
+		
 	}
-
+	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		//outState.putInt("mColorRes", mColorRes);
+	}
 }

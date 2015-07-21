@@ -26,6 +26,8 @@
     <string name="com_parse_ui_parse_login_failed_unknown_toast">Could not log in, please try again later</string>
     <string name="com_parse_ui_facebook_login_failed_toast">Facebook login failed</string>
     <string name="com_parse_ui_twitter_login_failed_toast">Twitter login failed</string>
+    <string name="changing_fragments">Changing Fragments</string>
+    
     
     
        <plurals name="com_parse_ui_password_too_short_toast">
@@ -66,4 +68,15 @@
 
     <string name="com_parse_ui_login_dispatch_user_logged_in">"User logged in, starting: "</string>
     <string name="com_parse_ui_login_dispatch_user_not_logged_in">User not logged in, starting ParseLoginActivity</string>
+    
+    
+     <string-array name="sport_names"> 
+        <item>個人檔案</item>
+        <item>隨緣</item>
+        <item>分區找對手</item>
+        <item>設定</item>
+        
+    </string-array>
 </resources>
+
+

@@ -77,7 +77,8 @@ public class SignupActivity extends BaseActivity implements SinchService.StartFa
         }
     }
 	
-    public void onStarted() {     // 正常 1->3->4 
+    @Override
+	public void onStarted() {     // 正常 1->3->4 
     	System.out.println("PleaseGO3");
     	
         /*Intent messagingActivity = new Intent();
@@ -124,7 +125,7 @@ public class SignupActivity extends BaseActivity implements SinchService.StartFa
                     "註冊中", "請 稍 等 . . . . ",true);
 		    ParseUser currentUser = ParseUser.getCurrentUser();
 		    if (currentUser != null) {
-		    	currentUser.logOut();
+		    	ParseUser.logOut();
 		    	System.out.println("要先登出anonymous");		    	
 			
 		    String username = usernameField.getText().toString();

@@ -2,19 +2,15 @@ package com.parse.starter;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.starter.R.color;
-import com.quickplay.QuickplayActivity;
 import com.sinch.android.rtc.SinchError;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -31,7 +27,8 @@ public class LoginActivity extends  BaseActivity implements SinchService.StartFa
 	    public void onStartFailed(SinchError error) {
 	        Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show();
 	    }
-	    public void onStarted() {     // 正常 1->3->4 
+	    @Override
+		public void onStarted() {     // 正常 1->3->4 
 	    	System.out.println("PleaseGO3");
 	    	
 	        /*Intent messagingActivity = new Intent();
@@ -39,7 +36,8 @@ public class LoginActivity extends  BaseActivity implements SinchService.StartFa
 	        startActivity(messagingActivity);*/
 	       
 	    }
-	    public void onPause() {
+	    @Override
+		public void onPause() {
 	     if(dialog!=null){
       	  dialog.dismiss();
 	     }
@@ -49,6 +47,8 @@ public class LoginActivity extends  BaseActivity implements SinchService.StartFa
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);//hide tittle
+
 		setContentView(R.layout.login);
 		
 	    usernameField = (EditText) findViewById(R.id.login_username_input);
@@ -72,7 +72,7 @@ public class LoginActivity extends  BaseActivity implements SinchService.StartFa
                     "登入中", "請 稍 等 . . . . ",true);
 		    ParseUser currentUserlogout = ParseUser.getCurrentUser();
 		    if (currentUserlogout != null) {
-		    	currentUserlogout.logOut();
+		    	ParseUser.logOut();
 		    	System.out.println("要先登出anonymous");
 		    String username = usernameField.getText().toString(); //username=>帳號
 		    String password = passwordField.getText().toString();

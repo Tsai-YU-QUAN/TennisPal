@@ -24,7 +24,6 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.quickplay.FriendActivity;
 
 public class FirstpersonalEditActivity extends Activity{
 	
@@ -154,6 +153,7 @@ public class FirstpersonalEditActivity extends Activity{
 	};
 	
 	
+	@Override
 	protected void onActivityResult(int requestCode,int resultCode,Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         System.out.println("requestCode"+requestCode);
