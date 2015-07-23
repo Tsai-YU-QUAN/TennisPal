@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?><AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AbsoluteLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:background="#FFFAFA"
+     >
+
+  <EditText
+      android:id="@+id/realname"
+      android:layout_width="140dp"
+      android:layout_height="wrap_content"
+      android:layout_x="178dp"
+      android:layout_y="45dp"
+      android:ems="10"
+      android:hint="真實名字" >
+
+      <requestFocus />
+  </EditText>
+
+  <Button
+      android:id="@+id/pickphoto"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_x="21dp"
+      android:layout_y="42dp"
+      android:text="選照片" />
+
+  <EditText
+      android:id="@+id/usualplace"
+      android:layout_width="140dp"
+      android:layout_height="56dp"
+      android:layout_x="180dp"
+      android:layout_y="78dp"
+      android:ems="10"
+      android:hint="出沒場地" />
+
+  <EditText
+      android:id="@+id/usualtime"
+      android:layout_width="140dp"
+      android:layout_height="56dp"
+      android:layout_x="178dp"
+      android:layout_y="140dp"
+      android:ems="10"
+      android:hint="可打球的時間" />
+
+  <Button
+      android:id="@+id/editfinal"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10sp"
+      android:layout_x="192dp"
+      android:layout_y="396dp"
+      android:text="編輯完成" />
+
+  <ImageView
+      android:id="@+id/firstpersonalprofile"
+      android:layout_width="120dp"
+      android:layout_height="100dp"
+      android:layout_marginTop="52dp"
+      android:layout_x="14dp"
+      android:layout_y="112dp" />
+
+  <EditText
+      android:id="@+id/handedness"
+      android:layout_width="140dp"
+      android:layout_height="56dp"
+      android:layout_x="182dp"
+      android:layout_y="192dp"
+      android:ems="10"
+      android:hint="慣用手" />
+
+  <EditText
+      android:id="@+id/ntrp"
+      android:layout_width="140dp"
+      android:layout_height="56dp"
+      android:layout_x="182dp"
+      android:layout_y="251dp"
+      android:ems="10"
+      android:hint="NTRP" />
+
+  <EditText
+      android:id="@+id/introduction"
+      android:layout_width="140dp"
+      android:layout_height="242dp"
+      android:layout_x="16dp"
+      android:layout_y="249dp"
+      android:ems="10"
+      android:hint="自我介紹" />
+
+</AbsoluteLayout>

@@ -25,7 +25,7 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-public class FirstpersonalEditActivity extends Activity{
+public class FirstpersonalEditActivity extends Activity{    //要注意參數值空值或是要不要填的問題
 	
 	  private EditText Realname;
 	  private EditText  UsualPlace;
@@ -36,6 +36,9 @@ public class FirstpersonalEditActivity extends Activity{
 	  String StringRealname="Realname";
 	  String StringUsualPlace="UsualPlace";
 	  String StringUsualtime="Usualtime";
+	  String StringHandedness="Handedness";
+	  String StringIntroduction="Introduction";
+	  String StringNTRP="NTRP";
 	  String StringPhoto="Photo";
 	  String StringUserID="UserID";
       Bitmap bitmap = null;
@@ -89,10 +92,16 @@ public class FirstpersonalEditActivity extends Activity{
 		    EditText Realname = (EditText)findViewById(R.id.Realname);
 		    EditText UsualPlace = (EditText)findViewById(R.id.UsualPlace);
 		    EditText Usualtime = (EditText)findViewById(R.id.Usualtime);
+		    EditText Handness = (EditText)findViewById(R.id.Handness);
+		    EditText introduction = (EditText)findViewById(R.id.introduction);
+		    EditText NTRP = (EditText)findViewById(R.id.NTRP);
 		    
 			final Editable GetRealname=Realname.getText();
 			final Editable GetUsualPlace=UsualPlace.getText();
 			final Editable GetUsualtime=Usualtime.getText();
+			final Editable GetHandness=Handness.getText();
+			final Editable Getintroduction=introduction.getText();
+			final Editable GetNTRP=NTRP.getText();
 			
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             if(bitmap==null){
@@ -111,6 +120,20 @@ public class FirstpersonalEditActivity extends Activity{
           	  dialog.dismiss();
                 Toast.makeText(v.getContext(), "還未輸入出沒時間...", Toast.LENGTH_LONG).show();
             }
+            else if(GetHandness.toString().length()<1){
+            	  dialog.dismiss();
+                  Toast.makeText(v.getContext(), "還未輸入慣用手...", Toast.LENGTH_LONG).show();
+            }
+            else if(Getintroduction.toString().length()<1){
+            	  dialog.dismiss();
+                  Toast.makeText(v.getContext(), "還未輸入自我介紹...", Toast.LENGTH_LONG).show();
+            	
+            }
+            else if(GetNTRP.toString().length()<1){
+            	  dialog.dismiss();
+                  Toast.makeText(v.getContext(), "還未輸入NTRP...", Toast.LENGTH_LONG).show();
+            	
+            }
             else{
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             byte[] photodata = stream.toByteArray();
@@ -127,6 +150,11 @@ public class FirstpersonalEditActivity extends Activity{
 						testObject.put(StringRealname,GetRealname.toString());
 						testObject.put(StringUsualPlace,GetUsualPlace.toString());
 						testObject.put(StringUsualtime,GetUsualtime.toString());
+						
+						testObject.put(StringHandedness,GetHandness.toString());
+						testObject.put(StringIntroduction,Getintroduction.toString());
+						testObject.put(StringNTRP,GetNTRP.toString());
+						
 						testObject.put(StringUserID,currentUser.getObjectId());
 						System.out.println("currentUsergetObjectId()"+currentUser.getObjectId());//使用者id上傳parse
 						

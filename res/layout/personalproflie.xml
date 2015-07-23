@@ -22,7 +22,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:text="名字"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textStyle="bold|italic" />
 
         <TextView
@@ -37,7 +37,7 @@
             android:gravity="left"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold|italic" />
 
         
@@ -50,10 +50,6 @@
             android:layout_marginTop="52dp"
              />
   
-          
-
-        
-
         <TextView
             android:id="@+id/Usualplace"
             android:layout_width="fill_parent"
@@ -61,6 +57,7 @@
             android:layout_alignLeft="@+id/personalprfile"
             android:layout_below="@+id/personalprfile"
             android:layout_marginTop="34dp"
+            android:layout_toLeftOf="@+id/ParseRealname"
             android:ellipsize="marquee"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -68,7 +65,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:text="出沒地點"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textStyle="bold|italic" />
 
         <TextView
@@ -78,13 +75,14 @@
             android:layout_alignLeft="@+id/personalprfile"
             android:layout_below="@+id/personalprfile"
             android:layout_marginTop="74dp"
+            android:layout_toLeftOf="@+id/ParseRealname"
             android:ellipsize="marquee"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:gravity="left"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold|italic" />
 
           <TextView
@@ -94,13 +92,14 @@
               android:layout_alignLeft="@+id/ParseUsualplace"
               android:layout_below="@+id/ParseUsualplace"
               android:layout_marginTop="42dp"
+              android:layout_toLeftOf="@+id/ParseRealname"
               android:ellipsize="marquee"
               android:focusable="true"
               android:focusableInTouchMode="true"
               android:gravity="left"
               android:marqueeRepeatLimit="marquee_forever"
               android:singleLine="true"
-              android:textSize="25sp"
+              android:textSize="20sp"
               android:textStyle="bold|italic" />
 
           <TextView
@@ -108,6 +107,7 @@
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               android:layout_alignLeft="@+id/ParseUsualplace"
+              android:layout_alignRight="@+id/Usualplace"
               android:layout_below="@+id/ParseUsualplace"
               android:ellipsize="marquee"
               android:focusable="true"
@@ -116,7 +116,95 @@
               android:marqueeRepeatLimit="marquee_forever"
               android:singleLine="true"
               android:text="出沒時間"
-              android:textSize="30sp"
+              android:textSize="25sp"
               android:textStyle="bold|italic" />
+
+          <TextView
+              android:id="@+id/Handedness"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_alignParentLeft="true"
+              android:layout_below="@+id/ParseUsualtime"
+              android:layout_toLeftOf="@+id/ParseRealname"
+              android:ellipsize="marquee"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              android:gravity="left"
+              android:marqueeRepeatLimit="marquee_forever"
+              android:singleLine="true"
+              android:text="慣用手"
+              android:textSize="25sp"
+              android:textStyle="bold|italic" />
+
+          <TextView
+              android:id="@+id/ParseHandedness"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignLeft="@+id/Handedness"
+              android:layout_alignRight="@+id/Handedness"
+              android:layout_below="@+id/Handedness"
+              android:ellipsize="marquee"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              android:marqueeRepeatLimit="marquee_forever"
+              android:singleLine="true"
+              android:textSize="20sp"
+              android:textStyle="bold|italic" />
+
+          <TextView
+              android:id="@+id/NTRP"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignLeft="@+id/ParseHandedness"
+              android:layout_below="@+id/ParseHandedness"
+              android:ellipsize="marquee"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              android:gravity="left"
+              android:marqueeRepeatLimit="marquee_forever"
+              android:singleLine="true"
+              android:text="NTRP"
+              android:textSize="25sp"
+              android:textStyle="bold|italic" />
+
+           <TextView
+               android:id="@+id/ParseNTRP"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignLeft="@+id/NTRP"
+               android:layout_below="@+id/NTRP"
+               android:layout_toLeftOf="@+id/ParseRealname"
+               android:ellipsize="marquee"
+               android:focusable="true"
+               android:focusableInTouchMode="true"
+               android:marqueeRepeatLimit="marquee_forever"
+               android:singleLine="true"
+               android:textSize="20sp"
+               android:textStyle="bold|italic" />
+           
+            <TextView
+                android:id="@+id/ParseIntroduction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/ParseNTRP"
+                android:layout_alignLeft="@+id/ParseRealname"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/Usualplace"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="left"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/editpersonal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Realname"
+        android:layout_alignParentRight="true"
+        android:text="個人編輯" />
 
     </RelativeLayout>

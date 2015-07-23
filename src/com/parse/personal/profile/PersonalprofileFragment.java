@@ -2,13 +2,16 @@ package com.parse.personal.profile;
 
 import java.util.List;
 
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
@@ -19,13 +22,18 @@ import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.starter.Globalvariable;
 import com.parse.starter.R;
 
-public class PersonalprofileFragment extends Fragment {
+public class PersonalprofileFragment extends Fragment {    //Fragment => PersonalProfileEdit 
 
 	String realname="";
 	String usualplace="";
 	String usualtime="";
+	String handedness="";
+	String ntrp="";
+	String introduction="";
+
 	private View v;
 	
 	public PersonalprofileFragment() {
@@ -33,7 +41,6 @@ public class PersonalprofileFragment extends Fragment {
 		//setRetainInstance(true);
 	}
 
-	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
 		v=inflater.inflate(R.layout.personalproflie,container,false);
@@ -41,6 +48,12 @@ public class PersonalprofileFragment extends Fragment {
 		final TextView ParseUsualplace =(TextView)v.findViewById(R.id.ParseUsualplace);
 		final TextView ParseUsualtime =(TextView)v.findViewById(R.id.ParseUsualtime);
 		final TextView ParseRealname =(TextView)v.findViewById(R.id.ParseRealname);
+		final TextView ParseHandedness =(TextView)v.findViewById(R.id.ParseHandedness);
+		final TextView ParseNTRP	 =(TextView)v.findViewById(R.id.ParseNTRP);
+		final TextView ParseIntroduction =(TextView)v.findViewById(R.id.ParseIntroduction);
+		final Button editpersonal =(Button)v.findViewById(R.id.editpersonal);
+		
+
 		
 		
 	    ParseUser currentUser = ParseUser.getCurrentUser();
@@ -80,11 +93,30 @@ public class PersonalprofileFragment extends Fragment {
 	    			realname=me.get(0).getString(com.parse.starter.Globalvariable.Realname).toString();
 	    			usualplace=me.get(0).getString(com.parse.starter.Globalvariable.UsualPlace).toString();
 	    			usualtime=me.get(0).getString(com.parse.starter.Globalvariable.Usualtime).toString();
+	    			handedness=me.get(0).getString(com.parse.starter.Globalvariable.Handedness).toString();
+	    			ntrp=me.get(0).getString(com.parse.starter.Globalvariable.NTRP).toString();
+	    			introduction=me.get(0).getString(com.parse.starter.Globalvariable.Introduction).toString();
+
 
 	    			ParseRealname.setText(realname);
 	    			ParseUsualplace.setText(usualplace);
 	    			ParseUsualtime.setText(usualtime);
-	    			System.out.println("realname"+realname);
+	    			ParseHandedness.setText(handedness);
+	    			ParseNTRP.setText(ntrp);
+	    			ParseIntroduction.setText(introduction);
+	    			
+	    			///丟給PersonalProfileEdit
+	    			Globalvariable.tempRealname=realname;
+	    			Globalvariable.tempUsualplace=usualplace;
+	    			Globalvariable.tempUsaultime=usualtime;
+	    			Globalvariable.tempHandness=handedness;
+	    			Globalvariable.tempNTRP=ntrp;
+	    			Globalvariable.tempIntroduction=introduction;
+	    			
+	    			System.out.println("realname"+Globalvariable.tempRealname);
+	    			System.out.println("usualplace"+Globalvariable.tempUsualplace);
+	    			
+	    			
 	    			
 	    		    final ParseFile image =(ParseFile)me.get(0).get("Photo");
 	    		    		// ((ParseObject) me).getParseFile("data");
@@ -183,6 +215,8 @@ public class PersonalprofileFragment extends Fragment {
 
 		System.out.println("Successuser2"+currentUser);
 		
+		editpersonal.setOnClickListener(Editpersonal);
+		
 		
 		return v;
 		
@@ -193,4 +227,17 @@ public class PersonalprofileFragment extends Fragment {
 		super.onSaveInstanceState(outState);
 		//outState.putInt("mColorRes", mColorRes);
 	}
+	
+	private OnClickListener Editpersonal =new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+		    Intent intent = new Intent(getActivity(), PersonalProfileEditActivity.class);
+		    startActivity(intent);
+			
+			
+		}
+	};
+	
 }

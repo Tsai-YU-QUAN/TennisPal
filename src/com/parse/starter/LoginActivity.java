@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends  BaseActivity implements SinchService.StartFailedListener{
+public class LoginActivity extends  BaseActivity implements SinchService.StartFailedListener{  //登入帳號或是密碼有問題會卡住
 	
 	  private EditText usernameField;
 	  private EditText passwordField;

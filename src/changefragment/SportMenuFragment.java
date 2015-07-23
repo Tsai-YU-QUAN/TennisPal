@@ -9,17 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.parse.personal.profile.FriendFragment;
 import com.parse.personal.profile.PersonalprofileFragment;
 import com.parse.starter.R;
 import com.quickplay.RandomFriendFragment;
-
-import android.support.v4.app.FragmentTransaction;
-
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 
 public class SportMenuFragment extends ListFragment {

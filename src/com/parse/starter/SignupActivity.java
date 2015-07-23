@@ -220,15 +220,19 @@ public class SignupActivity extends BaseActivity implements SinchService.StartFa
 		                  e.toString());
 		              switch (e.getCode()) {
 		                case ParseException.INVALID_EMAIL_ADDRESS:  //無效的EMAIL_ADDRESS
+				          dialog.dismiss();
 		                  showToast(R.string.com_parse_ui_invalid_email_toast);
 		                  break;
-		                case ParseException.USERNAME_TAKEN: 
+		                case ParseException.USERNAME_TAKEN:
+				          dialog.dismiss();
 		                  showToast(R.string.com_parse_ui_username_taken_toast);
 		                  break;
 		                case ParseException.EMAIL_TAKEN:      //由parse 去判斷email有沒有重複
+				          dialog.dismiss();
 		                  showToast(R.string.com_parse_ui_email_taken_toast);  
 		                  break;
 		                default:
+				          dialog.dismiss();
 		                  showToast(R.string.com_parse_ui_signup_failed_unknown_toast);
 		              }
 		            }

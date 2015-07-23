@@ -3,14 +3,12 @@ package com.quickplay;
 import java.util.LinkedList;
 import java.util.List;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -22,7 +20,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.starter.R;
 
-public class RandomFriendFragment extends Fragment {   //// 之後要修正成真正的Random Friend，從這邊下手
+public class RandomFriendFragment extends Fragment {   //// 之後要修正成真正的Random Friend，從這邊下手 ，而且有遇到空的值會造成Error
 	
 	String table_name="personaltable";
 	String realname;
